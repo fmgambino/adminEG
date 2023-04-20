@@ -44,7 +44,7 @@ $config['app_subname'] = 'Al Sistema de Gestion de Mi-IPhone';
 //$config['base_url'] = 'https://mi-iphone.midemo.tech';
 $config['base_url'] = $_SERVER['REMOTE_ADDR'] == '::1' ? 
   'http://localhost:9000' : 
-  'https://mi-iphone.midemo.tech';
+  'https://electronicagambino.com/admin';
 
 //LOCALHOST ING. GAMBINO
 // $config['base_url'] = 'http://localhost/myIphone';
