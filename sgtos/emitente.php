@@ -184,7 +184,7 @@
                                         <?= $dados[0]->rua . ', nº: ' . $dados[0]->numero . ', ' . $dados[0]->bairro . ' - ' . $dados[0]->cidade . ' - ' . $dados[0]->uf; ?><br />
                                         <?= 'CEP: ' . $dados[0]->cep; ?>
                                     </span> </br>
-                                    <span> E-mail: <?= $dados[0]->email . ' - Fone: ' . $dados[0]->telefone; ?></span></td>
+                                    <span> E-mail: <?= $dados[0]->email . ' - Tel: ' . $dados[0]->telefone; ?></span></td>
                             </tr>
                         </tbody>
                     </table>

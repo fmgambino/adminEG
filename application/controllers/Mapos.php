@@ -275,7 +275,7 @@ class Mapos extends MY_Controller
 
             $retorno = $this->mapos_model->editEmitente($id, $nome, $cnpj, $ie, $cep, $logradouro, $numero, $bairro, $cidade, $uf, $telefone, $email);
             if ($retorno) {
-                $this->session->set_flashdata('success', 'As informações foram alteradas com sucesso.');
+                $this->session->set_flashdata('success', 'La información ha sido cambiada con éxito.');
                 log_info('Alterou informações de emitente.');
             } else {
                 $this->session->set_flashdata('error', 'Ocorreu um erro ao tentar alterar as informações.');
@@ -304,7 +304,7 @@ class Mapos extends MY_Controller
 
         $retorno = $this->mapos_model->editLogo($id, $logo);
         if ($retorno) {
-            $this->session->set_flashdata('success', 'As informações foram alteradas com sucesso.');
+            $this->session->set_flashdata('success', 'La información ha sido cambiada con éxito.');
             log_info('Alterou a logomarca do emitente.');
         } else {
             $this->session->set_flashdata('error', 'Ocorreu um erro ao tentar alterar as informações.');
@@ -514,16 +514,16 @@ class Mapos extends MY_Controller
         );
         $events = array_map(function ($os) {
             switch ($os->status) {
-                case 'Aberto':
+                case 'Abierto':
                     $cor = '#00cd00';
                     break;
-                case 'Negociação':
+                case 'Negociando':
                     $cor = '#AEB404';
                     break;
-                case 'Em Andamento':
+                case 'En Proceso':
                     $cor = '#436eee';
                     break;
-                case 'Orçamento':
+                case 'Presupuesto':
                     $cor = '#CDB380';
                     break;
                 case 'Cancelado':
@@ -532,10 +532,10 @@ class Mapos extends MY_Controller
                 case 'Finalizado':
                     $cor = '#256';
                     break;
-                case 'Faturado':
+                case 'Facturado':
                     $cor = '#B266FF';
                     break;
-                case 'Aguardando Peças':
+                case 'Aguardando Repuesto':
                     $cor = '#FF7F00';
                     break;
                 default:
@@ -552,13 +552,13 @@ class Mapos extends MY_Controller
                     'cliente' => '<b>Cliente:</b> ' . $os->nomeCliente,
                     'dataInicial' => '<b>Data Inicial:</b> ' . $os->dataInicial,
                     'dataFinal' => '<b>Data Final:</b> ' . $os->dataFinal,
-                    'garantia' => '<b>Garantia:</b> ' . $os->garantia,
+                    'garantia' => '<b>Garantía:</b> ' . $os->garantia,
                     'status' => '<b>Status da OS:</b> ' . $os->status,
-                    'description' => '<b>Descrição/Produto:</b> ' . $os->descricaoProduto,
-                    'defeito' => '<b>Defeito:</b> ' . $os->defeito,
-                    'observacoes' => '<b>Observações:</b> ' . $os->observacoes,
-                    'total' => '<b>Valor Total:</b> R$ ' . number_format($os->totalProdutos + $os->totalServicos, 2, ',', '.'),
-                    'valorFaturado' => '<b>Valor Faturado:</b> R$ ' . number_format($os->valorTotal, 2, ',', '.'),
+                    'description' => '<b>Descripción/Prodcuto:</b> ' . $os->descricaoProduto,
+                    'defeito' => '<b>Defecto:</b> ' . $os->defeito,
+                    'observacoes' => '<b>Observaciones:</b> ' . $os->observacoes,
+                    'total' => '<b>Valor Total:</b> $ ' . number_format($os->totalProdutos + $os->totalServicos, 2, ',', '.'),
+                    'valorFaturado' => '<b>Valor Facturado:</b> $ ' . number_format($os->valorTotal, 2, ',', '.'),
                     'editar' => $this->os_model->isEditable($os->idOs),
                 ]
             ];

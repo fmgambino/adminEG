@@ -32,7 +32,7 @@
                                                 <?php echo $emitente[0]->nome; ?></span> </br><span>
                                                 <?php echo $emitente[0]->cnpj; ?> </br>
                                                 <?php echo $emitente[0]->rua . ', nº:' . $emitente[0]->numero . ', ' . $emitente[0]->bairro . ' - ' . $emitente[0]->cidade . ' - ' . $emitente[0]->uf; ?> </span> </br> <span> E-mail:
-                                                <?php echo $emitente[0]->email . ' - Fone: ' . $emitente[0]->telefone; ?></span></td>
+                                                <?php echo $emitente[0]->email . ' - Tel: ' . $emitente[0]->telefone; ?></span></td>
                                         <td style="width: 18%; text-align: center">#Venta: <span>
                                                 <?php echo $result->idVendas ?></span></br> </br> <span>Emisión:
                                                 <?php echo date('d/m/Y'); ?></span></td>

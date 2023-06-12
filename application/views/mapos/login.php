@@ -73,7 +73,7 @@ echo saudacao($login);
               </div>
               <div class="center"><button id="btn-acessar">Acessar</button>
               </div>
-              <div class="links-uteis"><a href="https://github.com/RamonSilva20/mapos"><p><?= date('Y'); ?> &copy; Electrónica Gambino</p></a>
+              <div class="links-uteis"><a href="https://github.com/fmgambino/mi-iPhone"><p><?= date('Y'); ?> &copy; Electrónica Gambino</p></a>
               </div>
               <a href="#notification" id="call-modal" role="button" class="btn" data-toggle="modal" style="display: none ">Notificación</a>
               <div id="notification" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

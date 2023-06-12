@@ -5,7 +5,7 @@
 class Vendas extends MY_Controller
 {
     /**
-     * author: Electrónica Gambino
+     * author: MI iPhone
      * email: electronicagambino@gmail.com
      *
      */
@@ -72,7 +72,7 @@ class Vendas extends MY_Controller
                 'observacoes_cliente' => $this->input->post('observacoes_cliente'),
                 'clientes_id' => $this->input->post('clientes_id'),
                 'usuarios_id' => $this->input->post('usuarios_id'),
-                'faturado' => 0,
+                'Faturado' => 0,
             ];
 
             if (is_numeric($id = $this->vendas_model->add('vendas', $data, true))) {
@@ -254,7 +254,7 @@ class Vendas extends MY_Controller
 
         $this->vendas_model->delete('itens_de_vendas', 'vendas_id', $id);
         $this->vendas_model->delete('vendas', 'idVendas', $id);
-        if ((int) $venda->faturado === 1) {
+        if ((int) $venda->Faturado === 1) {
             $this->vendas_model->delete('lancamentos', 'descricao', "Fatura de Venda - #${id}");
         }
 
@@ -474,7 +474,7 @@ class Vendas extends MY_Controller
             if ($this->vendas_model->add('lancamentos', $data) == true) {
                 $venda = $this->input->post('vendas_id');
 
-                $this->db->set('faturado', 1);
+                $this->db->set('Faturado', 1);
                 $this->db->set('valorTotal', $this->input->post('valor'));
                 $this->db->where('idVendas', $venda);
                 $this->db->update('vendas');

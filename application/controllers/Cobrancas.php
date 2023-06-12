@@ -5,7 +5,7 @@
 class Cobrancas extends MY_Controller
 {
     /**
-     * author: Electrónica Gambino
+     * author: MI iPhone
      * email: electronicagambino@gmail.com
      *
      */

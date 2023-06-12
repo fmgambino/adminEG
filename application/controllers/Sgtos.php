@@ -4,7 +4,7 @@
 class Sgtos extends MY_Controller
 {
     /**
-     * author: Electrónica Gambino
+     * author: MI iPhone
      * email: electronicagambino@gmail.com
      *
      */
@@ -275,7 +275,7 @@ class Sgtos extends MY_Controller
 
             $retorno = $this->Sgtos_model->editEmitente($id, $nome, $cnpj, $ie, $cep, $logradouro, $numero, $bairro, $cidade, $uf, $telefone, $email);
             if ($retorno) {
-                $this->session->set_flashdata('success', 'As informações foram alteradas com sucesso.');
+                $this->session->set_flashdata('success', 'La información ha sido cambiada con éxito.');
                 log_info('Alterou informações de emitente.');
             } else {
                 $this->session->set_flashdata('error', 'Ocorreu um erro ao tentar alterar as informações.');
@@ -304,7 +304,7 @@ class Sgtos extends MY_Controller
 
         $retorno = $this->Sgtos_model->editLogo($id, $logo);
         if ($retorno) {
-            $this->session->set_flashdata('success', 'As informações foram alteradas com sucesso.');
+            $this->session->set_flashdata('success', 'La información ha sido cambiada con éxito.');
             log_info('Alterou a logomarca do emitente.');
         } else {
             $this->session->set_flashdata('error', 'Ocorreu um erro ao tentar alterar as informações.');
@@ -423,6 +423,18 @@ class Sgtos extends MY_Controller
         if ($this->form_validation->run() == false) {
             $this->data['custom_error'] = (validation_errors() ? '<div class="alert">' . validation_errors() . '</div>' : false);
         } else {
+            // update assets
+            $logos_path = __DIR__ .'/../../assets/img/logos/';
+            if(!empty($_FILES['logo']['size'])) {
+                copy($_FILES['logo']['tmp_name'], $logos_path . 'iconAppleDarkLila.png');
+            }
+
+            if(!empty($_FILES['logo_dark']['size'])) {
+                copy($_FILES['logo_dark']['tmp_name'], $logos_path . 'iconAppleWhite.png');
+            }
+            if(!empty($_FILES['favicon']['size'])) {
+                copy($_FILES['favicon']['tmp_name'], $logos_path . 'faviconAppleWhiteBox.png');
+            }
             $data = [
                 'app_name' => $this->input->post('app_name'),
                 'per_page' => $this->input->post('per_page'),
@@ -514,16 +526,16 @@ class Sgtos extends MY_Controller
         );
         $events = array_map(function ($os) {
             switch ($os->status) {
-                case 'Aberto':
+                case 'Abierto':
                     $cor = '#00cd00';
                     break;
-                case 'Negociação':
+                case 'Negociando':
                     $cor = '#AEB404';
                     break;
-                case 'Em Andamento':
+                case 'En Proceso':
                     $cor = '#436eee';
                     break;
-                case 'Orçamento':
+                case 'Presupuesto':
                     $cor = '#CDB380';
                     break;
                 case 'Cancelado':
@@ -532,10 +544,10 @@ class Sgtos extends MY_Controller
                 case 'Finalizado':
                     $cor = '#256';
                     break;
-                case 'Faturado':
+                case 'Facturado':
                     $cor = '#B266FF';
                     break;
-                case 'Aguardando Peças':
+                case 'Aguardando Repuesto':
                     $cor = '#FF7F00';
                     break;
                 default:
@@ -558,7 +570,7 @@ class Sgtos extends MY_Controller
                     'defeito' => '<b>Defecto/Fallas</b> ' . $os->defeito,
                     'observacoes' => '<b>Observaciones:</b> ' . $os->observacoes,
                     'total' => '<b>Valor Total:</b> $ ' . number_format($os->totalProdutos + $os->totalServicos, 2, ',', '.'),
-                    'valorFaturado' => '<b>Valor Facturado:</b> $ ' . number_format($os->valorTotal, 2, ',', '.'),
+                    'valorFaturado' => '<b>Valor Faturado:</b> $ ' . number_format($os->valorTotal, 2, ',', '.'),
                     'editar' => $this->os_model->isEditable($os->idOs),
                 ]
             ];
@@ -568,5 +580,12 @@ class Sgtos extends MY_Controller
             ->set_content_type('application/json')
             ->set_status_header(200)
             ->set_output(json_encode($events));
+    }
+
+    public function qrcodes()
+    {
+        $this->data['view'] = 'qrcodes/qrcodes';
+
+        return $this->layout();
     }
 }

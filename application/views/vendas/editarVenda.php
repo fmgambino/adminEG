@@ -65,7 +65,7 @@
 
                                     <div class="span12" style="padding: 1%; margin-left: 0">
                                         <div class="span8 offset2" style="text-align: center;display:flex; flex-wrap: wrap">
-                                            <?php if ($result->faturado == 0) { ?>
+                                            <?php if ($result->Faturado == 0) { ?>
                                                 <a href="#modal-faturar" id="btn-faturar" role="button" data-toggle="modal" class="button btn btn-danger">
                                                     <span class="button__icon"><i class='bx bx-dollar'></i></span> <span class="button__text2">Facturar</span></a>
                                             <?php
@@ -173,7 +173,7 @@ foreach ($produtos as $p) {
                                             <tr>
                                                 <td colspan="4" style="text-align: right"><strong>Descuento:</strong></td>
                                                 <td>
-                                                    <div align="center"><strong><?php echo $result->tipo_desconto == "real" ? "R$ " : ""; ?> <?php echo number_format($result->desconto, 2, '.', ''); ?> <?php echo $result->tipo_desconto == "porcento" ? " %" : ""; ?></strong></div>
+                                                    <div align="center"><strong><?php echo $result->tipo_desconto == "real" ? "$ " : ""; ?> <?php echo number_format($result->desconto, 2, '.', ''); ?> <?php echo $result->tipo_desconto == "porcento" ? " %" : ""; ?></strong></div>
                                                 </td>
                                             </tr>
                                             <tr>

@@ -35,7 +35,7 @@ $config['payment_gateways'] = [
     //         'link' => 'Link de pagamento',
     //         'expired' => 'Link/Assinatura de pagamento expirado',
     //         'active' => 'Assinatura ativa Todas as cobranças estão sendo geradas',
-    //         'finished' => 'Carnê está finalizado',
+    //         'finished' => 'Carnê está Finalizado',
     //         'up_to_date' => 'Carnê encontra-se em dia',
     //     ]
     // ],
@@ -60,12 +60,12 @@ $config['payment_gateways'] = [
         ],
         'transaction_status' => [
             'pending' => 'El usuario aún no ha completado el proceso de pago',
-            'approved' => 'El pago ha sido aprobado y acreditado',
+            'approved' => 'El pago ha sido Aprovado y acreditado',
             'authorized' => 'El pago ha sido autorizado pero aún no acreditado',
             'in_process' => 'Se está revisando el pago',
             'in_mediation' => 'Los usuarios iniciaron una disputa',
             'rejected' => 'El pago fue rechazado, el usuario puede intentar el pago nuevamente',
-            'cancelled' => 'El pago fue cancelado por una de las partes o porque el plazo de pago ha vencido',
+            'cancelled' => 'El pago fue Cancelado por una de las partes o porque el plazo de pago ha vencido',
             'refunded' => 'El pago ha sido reembolsado al usuario.',
             'charged_back' => 'Se ha realizado un contracargo a la tarjeta de crédito del comprador.'
         ]

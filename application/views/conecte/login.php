@@ -81,7 +81,7 @@ $parse_email = $this->input->get('e');
                                     <div class="links-uteis"><a href="<?= site_url('mine/resetarSenha') ?>">
                                             <p style="margin:0px 0 18px">Olvidaste la Contraseña?</p>
                                         </a></div>
-                                    <div class="links-uteis"><a href="https://electronicagambino.com">
+                                    <div class="links-uteis"><a href="https://mi-iphone.com.ar">
                                             <p><?= date('Y'); ?> &copy; MI-iPhone </p>
                                         </a></div>
                                 </div>

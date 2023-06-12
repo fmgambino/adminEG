@@ -635,17 +635,18 @@ echo number_format($soma_descontos_pagos, 2, ',', '.')?></strong></td>
                     <div class="span6">
                         <label for="formaPgto">Forma de Pago</label>
                         <select name="formaPgto" id="formaPgtoEditar" class="span12">
-                            <option value="Dinheiro">Dinero</option>
-                            <option value="Pix">Pix</option>
-                            <option value="Boleto">Ticket</option>
-                            <option value="Cartão de Crédito">Tarjeta de Crédito</option>
-                            <option value="Cartão de Débito">Tarjeta de Débito</option>
-                            <option value="Cheque">Cheque</option> 
-                            <option value="Cheque Pré-datado">Cheque Pré-datado</option> 
-                            <option value="Depósito">Depósito</option>
+                            <option value="Cartão de Débito">Tarjeta de Débito</option> 
                             <option value="Transferência DOC">Transferencia DOC</option>
-                            <option value="Transferência TED">Transferencia TED</option>
-                            <option value="Promissória">Promisoria</option>
+                            <option value="Dinheiro">Efectivo</option>
+                            <option value="Cartão de Crédito">Tarjeta de Crédito</option>
+                            <option value="Débito">Débito</option>
+                            <option value="Boleto">Transferencia</option>
+                            <option value="Depósito">Depósito</option>
+                            <option value="Pix">MercadoPago</option>
+                            <option value="Promissória">PayPal</option>
+                            <option value="Transferência TED">Wise</option>
+                            <option value="Cheque Pré-datado">Binance USDT</option>
+                            <option value="Cheque">Cheque</option>
                         </select>
                     </div>
                 </div>
@@ -1012,18 +1013,18 @@ echo number_format($soma_descontos_pagos, 2, ',', '.')?></strong></td>
 			
 			if(qtdparc > 1){
 				if(entrada > 0){
-					$("#string_parc").text('R$ '+entrada+' de entrada mais '+qtdparc+' parcelas de R$ '+parseFloat(Math.round(result * 100) / 100).toFixed(2));
+					$("#string_parc").text('$ '+entrada+' de entrada mais '+qtdparc+' parcelas de $ '+parseFloat(Math.round(result * 100) / 100).toFixed(2));
 				$("#valorparcelas").val(parseFloat(Math.round(result * 100) / 100).toFixed(2));
 				}else{
-					$("#string_parc").text(qtdparc+' parcelas de R$ '+parseFloat(Math.round(result * 100) / 100).toFixed(2));
+					$("#string_parc").text(qtdparc+' parcelas de $ '+parseFloat(Math.round(result * 100) / 100).toFixed(2));
 				$("#valorparcelas").val(parseFloat(Math.round(result * 100) / 100).toFixed(2));
 				}
 			}else{
 				if(entrada > 0){
-					$("#string_parc").text('R$ '+entrada+' de entrada mais '+qtdparc+' parcela de R$ '+parseFloat(Math.round(result * 100) / 100).toFixed(2));
+					$("#string_parc").text('$ '+entrada+' de entrada mais '+qtdparc+' parcela de $ '+parseFloat(Math.round(result * 100) / 100).toFixed(2));
 				$("#valorparcelas").val(parseFloat(Math.round(result * 100) / 100).toFixed(2));
 				}else{
-					$("#string_parc").text(qtdparc+' parcela de R$ '+parseFloat(Math.round(result * 100) / 100).toFixed(2));
+					$("#string_parc").text(qtdparc+' parcela de $ '+parseFloat(Math.round(result * 100) / 100).toFixed(2));
 				$("#valorparcelas").val(parseFloat(Math.round(result * 100) / 100).toFixed(2));
 				}
 			}

@@ -49,8 +49,8 @@
                                         echo '<td>' . $r->quantidade . '</td>';
                                         echo '<td>' . $r->idRelacionado . '</td>';
                                         echo '<td>' . date('d/m/Y', strtotime($r->dataOcorrencia)) . '</td>';
-                                        echo '<td>' . 'R$ ' . number_format($r->preco, 2, ',', '.') . '</td>';
-                                        echo '<td>' . 'R$ ' . number_format($r->precoTotal, 2, ',', '.') . '</td>';
+                                        echo '<td>' . '$ ' . number_format($r->preco, 2, ',', '.') . '</td>';
+                                        echo '<td>' . '$ ' . number_format($r->precoTotal, 2, ',', '.') . '</td>';
                                         echo '<td>' . $r->origem . '</td>';
                                         echo '</tr>';
                                     }

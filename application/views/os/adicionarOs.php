@@ -55,13 +55,13 @@
                                         <div class="span3">
                                             <label for="status">Estado<span class="required">*</span></label>
                                             <select class="span12" name="status" id="status" value="">
-                                                <option value="Orçamento">Presupuesto</option>
-                                                <option value="Aberto">Abierto</option>
-                                                <option value="Em Andamento">En Proceso</option>
+                                                <option value="Presupuesto">Presupuesto</option>
+                                                <option value="Abierto">Abierto</option>
+                                                <option value="En Proceso">En Proceso</option>
                                                 <option value="Finalizado">Finalizado</option>
                                                 <option value="Cancelado">Cancelado</option>
-                                                <option value="Aguardando Peças">Aguardando Piezas/Repuestos</option>
-                                                <option value="Aprovado">Aprobado</option>
+                                                <option value="Aguardando Repuesto">Aguardando Repuesto</option>
+                                                <option value="Aprobado">Aprobado</option>
                                             </select>
                                         </div>
                                         <div class="span3">
@@ -78,6 +78,29 @@
                                             <?php echo form_error('garantia'); ?>
                                         </div>
                                     </div>
+                                    <div class="span12" style="padding: 1%; margin-left: 0">
+                                        <div class="span3">
+                                            <label for="pin">Adelanto</label>
+                                            <input id="pin" type="number" placeholder="1234" class="span12" name="adelanto" value="" />
+                                        </div>
+
+                                        <div class="span3">
+                                            <label for="pin">Cateogría</label>
+                                            <input id="categoria" type="text" placeholder="Categoría" class="span12" name="categoria" value="" />
+                                        </div>
+
+
+                                        <div class="span3">
+                                            <label for="pin">Lock pattern (code)</label>
+                                            <input type="number" class="span12" id="patternlock" name="patternlock" value="" />
+                                        </div>
+                                        <div class="span3">
+                                            <label for="termoGarantia">Elegir Garantía/Contrato</label>
+                                            <input id="termoGarantia" class="span12" type="text" name="termoGarantia" value="" />
+                                            <input id="garantias_id" class="span12" type="hidden" name="garantias_id" value="" />
+                                        </div>
+                                    </div>
+
                                     <div class="span12" style="padding: 1%; margin-left: 0">
                                         <div class="span3">
                                             <label for="pin">Pin</label>
@@ -102,15 +125,6 @@
                                                     <circle cx="80" cy="80" r="2"/>
                                                 </g>
                                             </svg>                             
-                                        </div>
-                                        <div class="span3">
-                                            <label for="pin">Lock pattern (code)</label>
-                                            <input type="number" class="span12" id="patternlock" name="patternlock" value="" />
-                                        </div>
-                                        <div class="span3">
-                                            <label for="termoGarantia">Elegir Garantía/Contrato</label>
-                                            <input id="termoGarantia" class="span12" type="text" name="termoGarantia" value="" />
-                                            <input id="garantias_id" class="span12" type="hidden" name="garantias_id" value="" />
                                         </div>
                                     </div>
                                     <div class="span6" style="padding: 1%; margin-left: 0">

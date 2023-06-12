@@ -520,7 +520,7 @@ class Migration_create_base extends CI_Migration
                 'constraint' => 11,
                 'null' => true,
             ],
-            'faturado' => [
+            'Faturado' => [
                 'type' => 'TINYINT',
                 'constraint' => 1,
                 'null' => false,
@@ -778,7 +778,7 @@ class Migration_create_base extends CI_Migration
                 'constraint' => 45,
                 'null' => true,
             ],
-            'faturado' => [
+            'Faturado' => [
                 'type' => 'TINYINT',
                 'constraint' => 1,
                 'null' => true,

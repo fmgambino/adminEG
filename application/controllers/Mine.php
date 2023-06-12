@@ -294,6 +294,8 @@ class Mine extends CI_Controller
                     'bairro' => $this->input->post('bairro'),
                     'cidade' => $this->input->post('cidade'),
                     'estado' => $this->input->post('estado'),
+                    'pais' => $this->input->post('pais'),
+                    'codpais' => $this->input->post('codpais'),
                     'cep' => $this->input->post('cep'),
                 ];
             } else {
@@ -309,6 +311,8 @@ class Mine extends CI_Controller
                     'bairro' => $this->input->post('bairro'),
                     'cidade' => $this->input->post('cidade'),
                     'estado' => $this->input->post('estado'),
+                    'pais' => $this->input->post('pais'),
+                    'codpais' => $this->input->post('codpais'),
                     'cep' => $this->input->post('cep'),
                 ];
             }
@@ -670,7 +674,7 @@ class Mine extends CI_Controller
                 'defeito' => $this->input->post('defeito'),
                 'status' => 'Aberto',
                 'observacoes' => set_value('observacoes'),
-                'faturado' => 0,
+                'Faturado' => 0,
             ];
 
             if (is_numeric($id = $this->Conecte_model->add('os', $data, true))) {
@@ -747,6 +751,8 @@ class Mine extends CI_Controller
                 'bairro' => set_value('bairro'),
                 'cidade' => set_value('cidade'),
                 'estado' => set_value('estado'),
+                'pais' => set_value('pais'),
+                'codpais' => set_value('codpais'),
                 'cep' => set_value('cep'),
                 'dataCadastro' => date('Y-m-d'),
             ];

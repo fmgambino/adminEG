@@ -237,22 +237,22 @@ $totalProdutos = 0; ?>
                     echo '<td>' . $p->descricao . '</td>';
                     echo '<td>' . $p->quantidade . '</td>';
                     echo '<td>' . $p->preco ?: $p->precoVenda . '</td>';
-                    echo '<td style="text-align: center">R$ ' . number_format($p->subTotal, 2, ',', '.') . '</td>';
+                    echo '<td style="text-align: center">$ ' . number_format($p->subTotal, 2, ',', '.') . '</td>';
                     echo '</tr>';
                 } ?>
 
                 <tr class="item">
                     <td colspan="3"></td>
-                    <td style="text-align: center"><strong>Total em Produtos: R$ <?= number_format($totalProdutos, 2, ',', '.'); ?></strong></td>
+                    <td style="text-align: center"><strong>Total de Productos: $ <?= number_format($totalProdutos, 2, ',', '.'); ?></strong></td>
                 </tr>
             <?php } ?>
 
             <?php if ($servicos) { ?>
 
                 <tr class="heading">
-                    <td>Serviço</td>
-                    <td>Quantidade</td>
-                    <td>Preço unit.</td>
+                    <td>Servicio</td>
+                    <td>Cantidades</td>
+                    <td>Precio unit.</td>
                     <td style="text-align: center">Sub-total</td>
                 </tr>
 
@@ -264,13 +264,13 @@ $totalProdutos = 0; ?>
                     echo '<td>' . $s->nome . '</td>';
                     echo '<td>' . ($s->quantidade ?: 1) . '</td>';
                     echo '<td>' . $preco . '</td>';
-                    echo '<td>R$ ' . number_format($subtotal, 2, ',', '.') . '</td>';
+                    echo '<td>$ ' . number_format($subtotal, 2, ',', '.') . '</td>';
                     echo '</tr>';
                 } ?>
 
                 <tr class="item">
                     <td colspan="3"></td>
-                    <td style="text-align: center"><strong>Total em Serviços: R$ <?= number_format($totalServico, 2, ',', '.'); ?></strong></td>
+                    <td style="text-align: center"><strong>Total en Servicios: $ <?= number_format($totalServico, 2, ',', '.'); ?></strong></td>
                 </tr>
             <?php } ?>
             <tr class="heading">
@@ -282,20 +282,20 @@ $totalProdutos = 0; ?>
             <tr class="heading">
                 <td colspan="3"></td>
                 <td style="text-align: center">
-                    <strong>Total: R$ <?= number_format($totalProdutos + $totalServico, 2, ',', '.') ?></strong>
+                    <strong>Total: $ <?= number_format($totalProdutos + $totalServico, 2, ',', '.') ?></strong>
                 </td>
             </tr>
             <?php if ($result->desconto != 0 && $result->valor_desconto != 0) { ?>
                 <tr class="heading">
                     <td colspan="3"></td>
                     <td style="text-align: center">
-                        <strong>Desconto: R$ <?= number_format($result->valor_desconto - ($totalProdutos + $totalServico), 2, ',', '.') ?></strong>
+                        <strong>Descuento: $ <?= number_format($result->valor_desconto - ($totalProdutos + $totalServico), 2, ',', '.') ?></strong>
                     </td>
                 </tr>
                 <tr class="heading">
                     <td colspan="3"></td>
                     <td style="text-align: center">
-                        <strong>Total com Desconto: R$ <?= number_format($result->valor_desconto, 2, ',', '.') ?></strong>
+                        <strong>Total con Descuento: $ <?= number_format($result->valor_desconto, 2, ',', '.') ?></strong>
                     </td>
                 </tr>
             <?php } ?>

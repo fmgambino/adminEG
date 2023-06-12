@@ -87,6 +87,7 @@
                 echo '<div class="alert alert-danger">' . $custom_error . '</div>';
             } ?>
             <form action="<?php echo current_url(); ?>" id="formCliente" method="post" class="form-horizontal">
+                <?php echo form_hidden('codpais', set_value('codpais')) ?>
                 <div class="widget-content nopadding tab-content">
                     <div class="span6">
                         <div class="control-group">
@@ -111,14 +112,20 @@
                         <div class="control-group">
                             <label for="telefone" class="control-label">Teléfono</label>
                             <div class="controls">
-                                <input id="telefone" type="text" name="teléfono" value="<?php echo set_value('telefone'); ?>" />
+                                <div class="input-prepend">
+                                    <span class="add-on"><span class="callingcode"></span></span></span>
+                                    <input id="telefone" name="telefone" type="number" class="input-block-level" value="<?php echo set_value('telefone'); ?>">
+                                </div>
                             </div>
                         </div>
                         <div class="control-group">
                             <label for="celular" class="control-label">Celular</label>
                             <div class="controls">
-                                <input id="celular" type="text" name="celular" value="<?php echo set_value('celular'); ?>" />
-                            </div>
+                                <div class="input-prepend">
+                                    <span class="add-on"><span class="callingcode"></span></span></span>
+                                    <input id="celular" name="celular" type="number" class="input-block-level" value="<?php echo set_value('celular'); ?>">
+                                </div>
+                            </div>                            
                         </div>
                         <div class="control-group">
                             <label for="email" class="control-label">Email</label>
@@ -184,7 +191,16 @@
                         <div class="control-group" class="control-label">
                             <label for="estado" class="control-label">Estado/Provincia</label>
                             <div class="controls">
-                                <select id="estado" name="estado">
+                                <input id="estado" type="text" name="estado" value="<?php echo set_value('estado'); ?>" />
+                                <!--select id="estado" name="estado">
+                                    <option value="">Seleccione...</option>
+                                </select-->
+                            </div>
+                        </div>
+                        <div class="control-group" class="control-label">
+                            <label for="pais" class="control-label">País</label>
+                            <div class="controls">
+                                <select id="pais" name="pais" class="">
                                     <option value="">Seleccione...</option>
                                 </select>
                             </div>
@@ -220,15 +236,26 @@
                 input.type = 'password';
             }
         });
-
-        $.getJSON('<?php echo base_url() ?>assets/json/estados.json', function(data) {
-            for (i in data.estados) {
-                $('#estado').append(new Option(data.estados[i].nome, data.estados[i].sigla));
-                var curState = '<?php echo set_value('estado'); ?>';
-                if (curState) {
-                    $("#estado option[value=" + curState + "]").prop("selected", true);
+        $.getJSON('<?php echo base_url() ?>assets/json/countries.json', function(data) {
+            $('#pais').change((e) => {
+                var value = e.target.value
+                var country = data.filter((e) => e.name == value)[0]
+                if(country) {
+                    $(`input[name="codpais"]`).val(country.callingCodes[0])
+                    $('.callingcode').html(`<img src="${country.flags.png}" width="24"/> <span class="text-muted">+${country.callingCodes[0]}</span>`)
                 }
+            })
+            for (i in data) {
+                $('#pais').append(new Option(data[i].name, data[i].name));
             }
+
+            var curState = '<?php echo set_value('pais') ?: 'Argentina'; ?>';
+            var country = data.filter((e) => e.name == curState)[0]
+            if(country) {
+                $('.callingcode').html(`<img src="${country.flags.png}" width="24"/> <span class="text-muted">+${country.callingCodes[0]}</span>`)
+                $('input[name="codpais"]').val(country.callingCodes[0])
+            }
+            $("#pais option[value=" + curState + "]").prop("selected", true);
         });
         $("#nomeCliente").focus();
         $('#formCliente').validate({
