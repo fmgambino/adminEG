@@ -4,17 +4,17 @@ $active_group = 'default';
 $query_builder = true;
 $db['default'] = [
     'dsn'   => '',
-    'hostname' => 'localhost',
-    'username' => 'root',
-    'password' => '',
-    'database' => 'my_iphone',
-    'dbdriver' => 'mysqli',
-
     // 'hostname' => 'localhost',
-    // 'username' => 'u197809344_fgambino',
-    // 'password' => 'Jamboree0381$$',
-    // 'database' => 'u197809344_myiphone',
+    // 'username' => 'root',
+    // 'password' => '',
+    // 'database' => 'my_iphone',
     // 'dbdriver' => 'mysqli',
+
+    'hostname' => 'localhost',
+    'username' => 'u197809344_fmgEG',
+    'password' => 'Jamboree0342$$',
+    'database' => 'u197809344_adminEG',
+    'dbdriver' => 'mysqli',
 
     'dbprefix' => '',
     'pconnect' => false,
