@@ -65,17 +65,32 @@
                             </div>
                         </div>
                         <div class="control-group">
+                            <label for="logo" class="control-label"><span>Isologo (light)</span></label>
+                            <div class="controls">
+                                <input type="file" name="isologo" value="" />
+                                <span class="help-inline">Formato PNG, Tamaño recomendado 512x512px</span>
+                            </div>                    
+                        </div>
+                        <div class="control-group">
+                            <label for="logo_dark" class="control-label"><span>Isologo (darkmode)</span></label>
+                            <div class="controls">
+                                <input type="file" name="isologo_dark" value="" />
+                                <span class="help-inline">Formato PNG, Tamaño recomendado 512x512px</span>
+                            </div>
+                            
+                        </div>
+                        <div class="control-group">
                             <label for="logo" class="control-label"><span>Logo (light)</span></label>
                             <div class="controls">
                                 <input type="file" name="logo" value="" />
-                                <span class="help-inline">Formato PNG, Tamaño recomendado 512x512px</span>
+                                <span class="help-inline">Formato PNG, Tamaño recomendado 512x100px</span>
                             </div>                    
                         </div>
                         <div class="control-group">
                             <label for="logo_dark" class="control-label"><span>Logo (darkmode)</span></label>
                             <div class="controls">
                                 <input type="file" name="logo_dark" value="" />
-                                <span class="help-inline">Formato PNG, Tamaño recomendado 512x512px</span>
+                                <span class="help-inline">Formato PNG, Tamaño recomendado 512x100px</span>
                             </div>
                             
                         </div>

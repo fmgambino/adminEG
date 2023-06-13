@@ -157,7 +157,7 @@
                                     <div class="span12" style="padding: 1%; margin-left: 0">
                                         <div class="span3">
                                             <label for="adelanto">Adelanto</label>
-                                            <input id="adelanto" class="span12" type="number" name="pin" value="<?php echo $result->adelanto ?>" />
+                                            <input id="adelanto" class="span12" type="number" name="adelanto" value="<?php echo $result->adelanto ?>" />
                                         </div>
                                         <div class="span3">
                                             <label for="categoria">Categoria</label>

@@ -425,11 +425,17 @@ class Sgtos extends MY_Controller
         } else {
             // update assets
             $img_path = __DIR__ .'/../../assets/img';
+            if(!empty($_FILES['isologo']['size'])) {
+                copy($_FILES['isologo']['tmp_name'], $img_path . '/logos/iconAppleDarkLila.png');
+            }
+            if(!empty($_FILES['isologo_dark']['size'])) {
+                copy($_FILES['isologo_dark']['tmp_name'], $img_path . '/logos/iconAppleWhite.png');
+            }
             if(!empty($_FILES['logo']['size'])) {
-                copy($_FILES['logo']['tmp_name'], $img_path . '/logos/iconAppleDarkLila.png');
+                copy($_FILES['logo']['tmp_name'], $img_path . '/logos/2.png');
             }
             if(!empty($_FILES['logo_dark']['size'])) {
-                copy($_FILES['logo_dark']['tmp_name'], $img_path . '/logos/iconAppleWhite.png');
+                copy($_FILES['logo_dark']['tmp_name'], $img_path . '/logos/6.png');
             }
             if(!empty($_FILES['favicon']['size'])) {
                 copy($_FILES['favicon']['tmp_name'], $img_path . '/faviconAppleWhiteBox.png');
