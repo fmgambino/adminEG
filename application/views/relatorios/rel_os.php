@@ -53,14 +53,14 @@
                                 <label for="">Estado:</label>
                                 <select name="status" id="" class="span12">
                                     <option value=""></option>
-                                    <option value="Orçamento">Presupuesto</option>
-                                    <option value="Aberto">Abierto</option>
-                                    <option value="Em Andamento">En Proceso</option>
+                                    <option value="Presupuesto">Presupuesto</option>
+                                    <option value="Abierto">Abierto</option>
+                                    <option value="En Proceso">En Proceso</option>
                                     <option value="Finalizado">Finalizado</option>
-                                    <option value="Faturado">Facturado</option>
+                                    <option value="Facturado">Facturado</option>
                                     <option value="Cancelado">Cancelado</option>
-                                    <option value="Negociação">Negociando</option>
-                                    <option value="Aguardando Peças">Aguardando Piezas/Repuestos</option>
+                                    <option value="Negociando">Negociando</option>
+                                    <option value="Aguardando Piezas/Repuestos">Aguardando Piezas/Repuestos</option>
                                 </select>
                             </div>
                             <div class="span6">

@@ -30,15 +30,15 @@
             <div class="span2">
                 <select name="status" id="" class="span12">
                     <option value="">Seleccione Estado</option>
-                    <option value="Aberto">Abierto</option>
-                    <option value="Faturado">Facturado</option>
-                    <option value="Negociação">Negociación</option>
-                    <option value="Em Andamento">En Proceso</option>
-                    <option value="Orçamento">Presupuesto</option>
+                    <option value="Abierto">Abierto</option>
+                    <option value="Facturado">Facturado</option>
+                    <option value="Negociando">Negociando</option>
+                    <option value="En Proceso">En Proceso</option>
+                    <option value="Presupuesto">Presupuesto</option>
                     <option value="Finalizado">Finalizado</option>
                     <option value="Cancelado">Cancelado</option>
-                    <option value="Aguardando Peças">Esperando Piezas/Respuestos</option>
-                    <option value="Aprovado">Aprobado</option>
+                    <option value="Aguardando Repuesto">Aguardando Repuesto</option>
+                    <option value="Aprobado">Aprobado</option>
                 </select>
 
             </div>
@@ -96,16 +96,16 @@ foreach ($results as $r) {
     }
 
     switch ($r->status) {
-        case 'Aberto':
+        case 'Abierto':
             $cor = '#00cd00';
             break;
-        case 'Em Andamento':
+        case 'En Proceso':
             $cor = '#436eee';
             break;
-        case 'Orçamento':
+        case 'Presupuesto':
             $cor = '#CDB380';
             break;
-        case 'Negociação':
+        case 'Negociando':
             $cor = '#AEB404';
             break;
         case 'Cancelado':
@@ -114,13 +114,13 @@ foreach ($results as $r) {
         case 'Finalizado':
             $cor = '#256';
             break;
-        case 'Faturado':
+        case 'Facturado':
             $cor = '#B266FF';
             break;
-        case 'Aguardando Peças':
+        case 'Aguardando Repuesto':
             $cor = '#FF7F00';
             break;
-        case 'Aprovado':
+        case 'Aprobado':
             $cor = '#808080';
             break;
         default:

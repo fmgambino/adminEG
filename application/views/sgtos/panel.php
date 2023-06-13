@@ -134,15 +134,15 @@
                         <form method="post">
                             <select style="padding-left: 30px" class="span12" name="statusOsGet" id="statusOsGet" value="">
                                 <option value="">Todos los Estados</option>
-                                <option value="Aberto">Abierto</option>
-                                <option value="Faturado">Facturado</option>
-                                <option value="Negociação">Negociando</option>
-                                <option value="Orçamento">Presupuesto</option>
-                                <option value="Em Andamento">En Proceso</option>
+                                <option value="Abierto">Abierto</option>
+                                <option value="Facturado">Facturado</option>
+                                <option value="Negociando">Negociando</option>
+                                <option value="Presupuesto">Presupuesto</option>
+                                <option value="En Proceso">En Proceso</option>
                                 <option value="Finalizado">Finalizado</option>
                                 <option value="Cancelado">Cancelado</option>
-                                <option value="Aguardando Peças">Aguardando Piezas/Repuestos</option>
-                                <option value="Aprovado">Aprobado</option>
+                                <option value="Aguardando Piezas/Repuestos">Aguardando Piezas/Repuestos</option>
+                                <option value="Aprobado">Aprobado</option>
                             </select>
                             <button type="button" class="btn-xs" id="btn-calendar"><i class="bx bx-search iconX2"></i></button>
                         </form>
@@ -838,7 +838,7 @@
                     };
                 },
                 failure: function() {
-                    alert('Falha ao buscar OS de calendário!');
+                    alert('Error al buscar la OS en el calendario!');
                 },
             },
             eventClick: function(info) {

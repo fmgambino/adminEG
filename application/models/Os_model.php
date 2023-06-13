@@ -124,6 +124,7 @@ class Os_model extends CI_Model
         $this->db->from('produtos_os');
         $this->db->join('produtos', 'produtos.idProdutos = produtos_os.produtos_id');
         $this->db->where('os_id', $id);
+        $this->db->order_by('produtos_os.position', 'asc');
 
         return $this->db->get()->result();
     }
@@ -134,7 +135,7 @@ class Os_model extends CI_Model
         $this->db->from('servicos_os');
         $this->db->join('servicos', 'servicos.idServicos = servicos_os.servicos_id');
         $this->db->where('os_id', $id);
-
+        $this->db->order_by('position', 'asc');
         return $this->db->get()->result();
     }
 
@@ -263,7 +264,7 @@ class Os_model extends CI_Model
         $query = $this->db->get('servicos');
         if ($query->num_rows() > 0) {
             foreach ($query->result_array() as $row) {
-                $row_set[] = ['label' => $row['nome'] . ' | Preço: $ ' . $row['preco'], 'id' => $row['idServicos'], 'preco' => $row['preco']];
+                $row_set[] = ['label' => $row['nome'] . ' | Precio: $ ' . $row['preco'], 'id' => $row['idServicos'], 'preco' => $row['preco']];
             }
             echo json_encode($row_set);
         }
@@ -305,7 +306,7 @@ class Os_model extends CI_Model
 
     public function criarTextoWhats($textoBase, $troca)
     {
-        $procura = ["{CLIENTE_NOME}", "{NUMERO_OS}", "{STATUS_OS}", "{VALOR_OS}", "{DESCRI_PRODUTOS}", "{EMITENTE}", "{TELEFONE_EMITENTE}", "{OBS_OS}", "{DEFEITO_OS}", "{LAUDO_OS}", "{DATA_FINAL}", "{DATA_INICIAL}", "{DATA_GARANTIA}"];
+        $procura = ["{CLIENTE_NOME}", "{E_MAIL}", "{NUMERO_OS}", "{STATUS_OS}", "{VALOR_OS}", "{DESCRI_PRODUTOS}", "{EMITENTE}", "{TELEFONE_EMITENTE}", "{OBS_OS}", "{DEFEITO_OS}", "{LAUDO_OS}", "{DATA_FINAL}", "{DATA_INICIAL}", "{DATA_GARANTIA}"];
         $textoBase = str_replace($procura, $troca, $textoBase);
         $textoBase = strip_tags($textoBase);
         $textoBase = htmlentities(urlencode($textoBase));
@@ -341,7 +342,7 @@ class Os_model extends CI_Model
             return false;
         }
         if ($os = $this->getById($id)) {
-            $osT = (int)($os->status === "Faturado" || $os->status === "Cancelado" || $os->faturado == 1);
+            $osT = (int)($os->status === "Faturado" || $os->status === "Cancelado" || $os->Faturado == 1);
             if ($osT) {
                 return $this->data['configuration']['control_editos'] == '1';
             }

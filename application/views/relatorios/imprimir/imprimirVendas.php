@@ -45,9 +45,9 @@
                                     echo '<td>' . $v->nomeCliente . '</td>';
                                     echo '<td align="center">' . $v->nome . '</td>';
                                     echo '<td align="center">' . date('d/m/Y', strtotime($v->dataVenda)) . '</td>';
-                                    echo '<td align="center">R$: ' . number_format($v->valorTotal, 2, ',', '.') . '</td>';
-                                    echo '<td align="center">' . ($v->tipo_desconto == "real" ? "R$ " : "") . $v->desconto ." ". ($v->tipo_desconto == "porcento" ? " %" : "") . '</td>';
-                                    echo '<td align="center">R$: ' . number_format($v->valor_desconto != 0 ? $v->valor_desconto : $v->valorTotal, 2, ',', '.') . '</td>';
+                                    echo '<td align="center">$: ' . number_format($v->valorTotal, 2, ',', '.') . '</td>';
+                                    echo '<td align="center">' . ($v->tipo_desconto == "real" ? "$ " : "") . $v->desconto ." ". ($v->tipo_desconto == "porcento" ? " %" : "") . '</td>';
+                                    echo '<td align="center">$: ' . number_format($v->valor_desconto != 0 ? $v->valor_desconto : $v->valorTotal, 2, ',', '.') . '</td>';
                                     echo '</tr>';
                                 }
     ?>

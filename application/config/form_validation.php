@@ -51,6 +51,11 @@ $config = [
             'rules' => 'trim',
         ],
         [
+            'field' => 'pais',
+            'label' => 'País',
+            'rules' => 'trim',
+        ],
+        [
             'field' => 'cep',
             'label' => 'CEP',
             'rules' => 'trim',

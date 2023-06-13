@@ -132,7 +132,7 @@ class Mapos_model extends CI_Model
         $this->db->select('os.*, clientes.nomeCliente');
         $this->db->from('os');
         $this->db->join('clientes', 'clientes.idClientes = os.clientes_id');
-        $this->db->where('os.status', 'Aguardando Peças');
+        $this->db->where('os.status', 'Aguardando Repuesto');
         $this->db->limit(10);
         return $this->db->get()->result();
     }
@@ -142,7 +142,7 @@ class Mapos_model extends CI_Model
         $this->db->select('os.*, clientes.nomeCliente');
         $this->db->from('os');
         $this->db->join('clientes', 'clientes.idClientes = os.clientes_id');
-        $this->db->where('os.status', 'Em Andamento');
+        $this->db->where('os.status', 'En Proceso');
         $this->db->limit(10);
         return $this->db->get()->result();
     }

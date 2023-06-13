@@ -75,7 +75,7 @@ $totalProdutos = 0; ?>
     <div id="principal">
         <div class="book">
             <div class="container-fluid page" id="viaCliente">
-                <div class="subpage"><?php echo (!$configuration['control_2vias']) ? "" : "Via Cliente" ?>
+                <div class="subpage"><?php echo (!$configuration['control_2vias']) ? "" : "Copia Cliente" ?>
                     <div class="row-fluid">
                         <div class="span12">
                             <div class="invoice-content">
@@ -101,7 +101,7 @@ $totalProdutos = 0; ?>
                                                             </span> </br> <span>
                                                                 <span class="icon">
                                                                     <i class="fas fa-comments" style="margin:5px 1px"></i>
-                                                                    E-mail:<?php echo $emitente[0]->email . ' - Fone: ' . $emitente[0]->telefone; ?> </br>
+                                                                    E-mail:<?php echo $emitente[0]->email . ' - Whastapp: ' . $emitente[0]->telefone; ?> </br>
                                                                     <span class="icon">
                                                                         <i class="fas fa-user-check"></i>
                                                                         Responsable: <?php echo $result->nome ?>
@@ -151,7 +151,7 @@ $totalProdutos = 0; ?>
                                                         <?php echo date('d/m/Y', strtotime($result->dataInicial)); ?>
                                                     </td>
                                                     <td>
-                                                        <b>Fecha Final: </b>
+                                                        <b>Válido Hasta: </b>
                                                         <?php echo $result->dataFinal ? date('d/m/Y', strtotime($result->dataFinal)) : ''; ?>
                                                     </td>
                                                     <?php if ($result->garantia) {
@@ -301,7 +301,7 @@ $totalProdutos = 0; ?>
             <?php $totalServico = 0;
 $totalProdutos = 0; ?>
             <div class="container-fluid page" id="ViaEmpresa" <?php echo (!$configuration['control_2vias']) ? "style='display: none;'" : "style='display: block;'" ?>>
-                <div class="subpage">Via Empresa
+                <div class="subpage">Copia Empresa
                     <div class="row-fluid">
                         <div class="span12">
                             <div class="invoice-content">
@@ -327,7 +327,7 @@ $totalProdutos = 0; ?>
                                                             </span> </br> <span>
                                                                 <span class="icon">
                                                                     <i class="fas fa-comments" style="margin:5px 1px"></i>
-                                                                    E-mail:<?php echo $emitente[0]->email . ' - Fone: ' . $emitente[0]->telefone; ?> </br>
+                                                                    E-mail:<?php echo $emitente[0]->email . ' - Whatsapp: ' . $emitente[0]->telefone; ?> </br>
                                                                     <span class="icon">
                                                                         <i class="fas fa-user-check"></i>
                                                                         Responsable: <?php echo $result->nome ?>
@@ -377,7 +377,7 @@ $totalProdutos = 0; ?>
                                                         <?php echo date('d/m/Y', strtotime($result->dataInicial)); ?>
                                                     </td>
                                                     <td>
-                                                        <b>Fecha Final: </b>
+                                                        <b>Válido Hasta: </b>
                                                         <?php echo $result->dataFinal ? date('d/m/Y', strtotime($result->dataFinal)) : ''; ?>
                                                     </td>
                                                     <?php if ($result->garantia) {

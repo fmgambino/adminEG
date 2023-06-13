@@ -124,7 +124,7 @@ e [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Fixed
 - Corrigido problema ao gerar qr code de PIX. [@Pr3d4dor](https://github.com/Pr3d4dor)
-- Corrigido erro ao selecionar filtro faturado e nome do cliente, não vinha os dados existentes. [@willph](https://github.com/willph)
+- Corrigido erro ao selecionar filtro Faturado e nome do cliente, não vinha os dados existentes. [@willph](https://github.com/willph)
 - Corrigido autocomplete de CEP do viacep. [@douglascoe](https://github.com/douglascoe)
 
 ## [4.31.1] - 2021-02-13
@@ -175,7 +175,7 @@ e [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Added
 - Adicionado opção de pagamento PIX em receitas e despesas. [@cleytonasa](https://github.com/cleytonasa)
-- Adicionado o controle de edição de OS com status CANCELADO e/ou FATURADO. [@seitbnao](https://github.com/seitbnao)
+- Adicionado o controle de edição de OS com status Cancelado e/ou Faturado. [@seitbnao](https://github.com/seitbnao)
 - Adicionado opção de cliente fornecedor em clientes. [@seitbnao](https://github.com/seitbnao)
 - Adiciona o controle de visualização de dataTables. [@seitbnao](https://github.com/seitbnao)
 
@@ -191,7 +191,7 @@ e [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Added
 - Adiciona novas opções de unidades de medidas em produtos, seguindo modelo da SEFAZ-PA. [@seitbnao](https://github.com/seitbnao)
-- Adiciona BLOQUEIO em exclusão e edição de OS que esteja com status CANCELADO e/ou FATURADO. [@seitbnao](https://github.com/seitbnao)
+- Adiciona BLOQUEIO em exclusão e edição de OS que esteja com status Cancelado e/ou Faturado. [@seitbnao](https://github.com/seitbnao)
 
 ### Fixed
 - Corrigido quebra de código por Exception geradas nas APIs. [@willph](https://github.com/willph)
@@ -538,7 +538,7 @@ e [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ## [4.5.0] - 2020-04-19
 
 ### Added
-- Adequação para mostrar valor total de OS na tela de listagem (valor total e valor total (faturado)). [@Pr3d4dor](https://github.com/Pr3d4dor)
+- Adequação para mostrar valor total de OS na tela de listagem (valor total e valor total (Faturado)). [@Pr3d4dor](https://github.com/Pr3d4dor)
 
 ### Changed
 - Melhoria em busca de tag em releases no atualizador. [@Pr3d4dor](https://github.com/Pr3d4dor)
@@ -637,7 +637,7 @@ e [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Added
 - Adicionado opções de configuração do sistema. [@Electronica Gambino](https://github.com/fmgambinoctronica Gambino)
-- Adicionado status faturado no filtro de Informes de OS. [@ZanzouShio](https://github.com/ZanzouShio)
+- Adicionado status Faturado no filtro de Informes de OS. [@ZanzouShio](https://github.com/ZanzouShio)
 - Adicionado opção de atualização de estoque pelo listagem e dashboard. [@TiagoOliveira](https://github.com/trollfalgar)
 
 ### Fixed
@@ -788,7 +788,7 @@ Por: Wilmerson Felipe[will.phelipe@gmail.com](https://github.com/willph)
 
 ## [3.3.2] - 2019-04-13
 ### Fixed
-- Corrigido exibição da label de status faturado em panel de visualização de cliente [@Pr3d4dor](https://github.com/Pr3d4dor).
+- Corrigido exibição da label de status Faturado em panel de visualização de cliente [@Pr3d4dor](https://github.com/Pr3d4dor).
 
 ## [3.3.1] - 2019-03-03
 Por: Fábio Barbosa[fabiobarbosa@gmx.com](https://github.com/aportetecnologia)
@@ -851,7 +851,7 @@ Adicionado o campo valorTotal dentro do $this->data['results']. [Fábio Barbosa]
 ## [3.1.12] - 2018-08-14
 ### Added
 - Valor total no Informes de OS [@Electronica Gambino](https://github.com/fmgambinoctronica Gambino).
-- Status alterado automaticamente para faturado [@Pr3d4dor](https://github.com/Pr3d4dor).
+- Status alterado automaticamente para Faturado [@Pr3d4dor](https://github.com/Pr3d4dor).
 - Exibir o nome do anexo na embaixo do thumbnail em anexos de OS [@Pr3d4dor](https://github.com/Pr3d4dor).
 
 ### Changed

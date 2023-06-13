@@ -104,7 +104,7 @@ if (!function_exists('verific_cpf_cnpj')) {
         $cpfCnpj = preg_replace('/[^0-9]/', '', $cpfCnpjValor);
         $cpfCnpj = (string) $cpfCnpj;
 
-        if (strlen($cpfCnpj) === 10) {
+        if (strlen($cpfCnpj) === 12) {
             return true;
             //return valid_cpf($cpfCnpj);
         }

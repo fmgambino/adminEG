@@ -89,6 +89,7 @@
                 echo '<div class="alert alert-danger">' . $custom_error . '</div>';
             } ?>
             <form action="<?php echo current_url(); ?>" id="formCliente" method="post" class="form-horizontal">
+                <?php echo form_hidden('codpais', $result->codpais) ?>
                 <div class="widget-content nopadding tab-content">
                     <div class="span6">
                         <div class="control-group">
@@ -114,15 +115,21 @@
                         <div class="control-group">
                             <label for="telefone" class="control-label">Teléfono</label>
                             <div class="controls">
-                                <input id="telefone" type="text" name="telefone" value="<?php echo $result->telefone; ?>" />
+                                <div class="input-prepend">
+                                    <span class="add-on"><span class="callingcode"></span></span></span>
+                                    <input id="telefone" name="telefone" type="number" class="input-block-level" value="<?php echo $result->telefone; ?>">
+                                </div>
                             </div>
                         </div>
                         <div class="control-group">
-                            <label for="celular" class="control-label">Celular</label>
+                            <label class="control-label" for="celular">Celular</label>
                             <div class="controls">
-                                <input id="celular" type="text" name="celular" value="<?php echo $result->celular; ?>" />
+                                <div class="input-prepend">
+                                    <span class="add-on"><span class="callingcode"></span></span></span>
+                                    <input id="celular" name="celular" type="number" class="input-block-level" value="<?php echo $result->celular; ?>">
+                                </div>
                             </div>
-                        </div>
+                        </div>                        
                         <div class="control-group">
                             <label for="email" class="control-label">Email</label>
                             <div class="controls">
@@ -187,7 +194,16 @@
                         <div class="control-group" class="control-label">
                             <label for="estado" class="control-label">Provincia</label>
                             <div class="controls">
-                                <select id="estado" name="estado" class="">
+                                <input id="estado" type="text" name="estado" value="<?php echo $result->estado; ?>" />
+                                <!--select id="estado" name="estado" class="">
+                                    <option value="">Seleccione...</option>
+                                </select-->
+                            </div>
+                        </div>
+                        <div class="control-group" class="control-label">
+                            <label for="pais" class="control-label">País</label>
+                            <div class="controls">
+                                <select id="pais" name="pais" class="">
                                     <option value="">Seleccione...</option>
                                 </select>
                             </div>
@@ -198,7 +214,7 @@
                     <div class="span12">
                         <div class="span6 offset3" style="display:flex;justify-content: center">
                             <button type="submit" class="button btn btn-primary" style="max-width: 160px">
-                                <span class="button__icon"><i class="bx bx-sync"></i></span><span class="button__text2">Atualizar</span></button>
+                                <span class="button__icon"><i class="bx bx-sync"></i></span><span class="button__text2">Actualizar</span></button>
                             <a title="Voltar" class="button btn btn-warning" href="<?php echo site_url() ?>/clientes"><span class="button__icon"><i class="bx bx-undo"></i></span> <span class="button__text2">Voltar</span></a>
                         </div>
                     </div>
@@ -225,15 +241,31 @@
             }
         });
 
-        $.getJSON('<?php echo base_url() ?>assets/json/estados.json', function(data) {
-            for (i in data.estados) {
-                $('#estado').append(new Option(data.estados[i].nome, data.estados[i].sigla));
-                var curState = '<?php echo $result->estado; ?>';
-                if (curState) {
-                    $("#estado option[value=" + curState + "]").prop("selected", true);
+        $.getJSON('<?php echo base_url() ?>assets/json/countries.json', function(data) {
+            $('#pais').change((e) => {
+                var value = e.target.value
+                var country = data.filter((e) => e.name == value)[0]
+                if(country) {
+                    $(`input[name="codpais"]`).val(country.callingCodes[0])
+                    $('.callingcode').html(`<img src="${country.flags.png}" width="24"/> <span class="text-muted">+${country.callingCodes[0]}</span>`)
                 }
+            })
+            for (i in data) {
+                $('#pais').append(new Option(data[i].name, data[i].name));
             }
+
+            var curState = '<?php echo $result->pais ?: 'Argentina' ?>';
+            if (curState) {
+                var country = data.filter((e) => e.name == curState)[0]
+                if(country) {
+                    $('.callingcode').html(`<img src="${country.flags.png}" width="24"/> <span class="text-muted">+${country.callingCodes[0]}</span>`)
+                    $('input[name="codpais"]').val(country.callingCodes[0])
+                }
+                $("#pais option[value=" + curState + "]").prop("selected", true);
+            }
+
         });
+
         $('#formCliente').validate({
             rules: {
                 nomeCliente: {

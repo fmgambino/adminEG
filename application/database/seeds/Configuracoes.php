@@ -37,9 +37,10 @@ class Configuracoes extends Seeder
             [
                 'idConfig' => 7,
                 'config' => 'notifica_whats',
-                'valor' => 'Prezado(a), {CLIENTE_NOME} a OS de nº {NUMERO_OS} teve o status alterado para :{STATUS_OS} segue a descrição {DESCRI_PRODUTOS} com valor total de {VALOR_OS}!
-                Para mais informações entre em contato conosco.
-                Atenciosamente, {EMITENTE} {TELEFONE_EMITENTE}.',
+                'valor' => '*Estimado(a), {CLIENTE_NOME}* su OS Nº *{NUMERO_OS}* había cambiado el estado a: *{STATUS_OS}* con descripción {DESCRI_PRODUTOS} con Valor Total de: *{VALOR_OS}*!
+                Para más información entre en contacto con Nosotros.
+
+                Atte., *{EMITENTE} {TELEFONE_EMITENTE}*.',
             ],
             [
                 'idConfig' => 8,

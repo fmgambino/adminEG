@@ -58,6 +58,9 @@
             font-weight: 500;
         }
 
+        .input-prepend input {
+            max-width: 12rem;
+        }
         @media (max-width: 480px) {
             form {
                 display: block !important;
@@ -79,12 +82,12 @@
                 <h5>Regístrate en el Sistema</h5>
             </div>
             <div class="widget-content nopadding tab-content">
-
                 <form action="<?php echo current_url(); ?>" id="formCliente" method="post" class="form-horizontal" style="display: grid;grid-template-columns: 1fr 1fr">
+                    <?php echo form_hidden('codpais', set_value('codpais')) ?>
                     <div class="control-group">
                         <label for="nomeCliente" class="control-label"><span class="required"></span></label>
                         <div class="controls">
-                            <input id="nomeCliente" type="text" placeholder="Nome*" name="nomeCliente" value="<?php echo set_value('nomeCliente'); ?>" />
+                            <input id="nomeCliente" type="text" placeholder="Nombre y Apellido*" name="nomeCliente" value="<?php echo set_value('nomeCliente'); ?>" />
                         </div>
                     </div>
                     <div class="control-group">
@@ -93,23 +96,29 @@
                         } ?>
                         <label for="documento" class="control-label"><span class="required"></span></label>
                         <div class="controls">
-                            <input id="documento" class="cpfcnpj" type="text" placeholder="CPF/CNPJ*" name="documento" value="<?php echo set_value('documento'); ?>" />
-                            <button style="top:70px;right:40px;position:absolute" id="buscar_info_cnpj" class="btn btn-xs" type="button"><i class="fas fa-search"></i></button>
+                            <input id="documento" class="cpfcnpj" type="text" placeholder="CUIT/CUIL*" name="documento" value="<?php echo set_value('documento'); ?>" />
+                            <!-- <button style="top:70px;right:40px;position:absolute" id="buscar_info_cnpj" class="btn btn-xs" type="button"><i class="fas fa-search"></i></button> -->
                         </div>
                     </div>
 
                     <div class="control-group">
-                        <label for="telefone" class="control-label"><span class="required"></span></label>
+                        <label for="telefone" class="control-label"></label>
                         <div class="controls">
-                            <input id="telefone" type="text" placeholder="Telefone*" name="telefone" value="<?php echo set_value('telefone'); ?>" />
+                            <div class="input-prepend">
+                                <span class="add-on"><span class="callingcode"></span></span></span>
+                                <input id="telefone" name="telefone" placeholder="Teléfono*" type="number" class="input-block-level" value="<?php echo set_value('telefone'); ?>">
+                            </div>
                         </div>
                     </div>
 
                     <div class="control-group">
                         <label for="celular" class="control-label"></label>
                         <div class="controls">
-                            <input id="celular" type="text" placeholder="Celular" name="celular" value="<?php echo set_value('celular'); ?>" />
-                        </div>
+                            <div class="input-prepend">
+                                <span class="add-on"><span class="callingcode"></span></span></span>
+                                <input id="celular" placeholder="Celular/Whatsapp" name="celular" type="number" class="input-block-level" value="<?php echo set_value('celular'); ?>">
+                            </div>
+                        </div>                            
                     </div>
 
                     <div class="control-group">
@@ -122,7 +131,7 @@
                     <div class="control-group">
                         <label for="senha" class="control-label"><span class="required"></span></label>
                         <div class="controls">
-                            <input id="senha" type="password" placeholder="Senha*" name="senha" value="<?php echo set_value('senha'); ?>" />
+                            <input id="senha" type="password" placeholder="Contraseña*" name="senha" value="<?php echo set_value('senha'); ?>" />
                             <img id="imgSenha" src="<?php echo base_url() ?>assets/img/eye.svg" alt="">
                         </div>
                     </div>
@@ -130,7 +139,7 @@
                     <div class="control-group" class="control-label">
                         <label for="cep" class="control-label"><span class="required"></span></label>
                         <div class="controls">
-                            <input id="cep" type="text" placeholder="CEP*" name="cep" value="<?php echo set_value('cep'); ?>" />
+                            <input id="cep" type="text" placeholder="CP.*" name="CEP" value="<?php echo set_value('cep'); ?>" />
                         </div>
                     </div>
 
@@ -138,7 +147,7 @@
                     <div class="control-group" class="control-label">
                         <label for="rua" class="control-label"><span class="required"></span></label>
                         <div class="controls">
-                            <input id="rua" type="text" placeholder="Rua*" name="rua" value="<?php echo set_value('rua'); ?>" />
+                            <input id="rua" type="text" placeholder="Domicilio*" name="rua" value="<?php echo set_value('rua'); ?>" />
                         </div>
                     </div>
 
@@ -151,31 +160,38 @@
                     <div class="control-group">
                         <label for="complemento" class="control-label"></label>
                         <div class="controls">
-                            <input id="complemento" type="text" placeholder="Complemento" name="complemento" value="<?php echo set_value('complemento'); ?>" />
+                            <input id="complemento" type="text" placeholder="Dto/Piso/Mza." name="complemento" value="<?php echo set_value('complemento'); ?>" />
                         </div>
                     </div>
                     <div class="control-group" class="control-label">
                         <label for="bairro" class="control-label"><span class="required"></span></label>
                         <div class="controls">
-                            <input id="bairro" type="text" placeholder="Bairro*" name="bairro" value="<?php echo set_value('bairro'); ?>" />
+                            <input id="bairro" type="text" placeholder="Barrio*" name="bairro" value="<?php echo set_value('bairro'); ?>" />
                         </div>
                     </div>
 
                     <div class="control-group" class="control-label">
                         <label for="cidade" class="control-label"><span class="required"></span></label>
                         <div class="controls">
-                            <input id="cidade" type="text" placeholder="Cidade*" name="cidade" value="<?php echo set_value('cidade'); ?>" />
+                            <input id="cidade" type="text" placeholder="Ciudad*" name="cidade" value="<?php echo set_value('cidade'); ?>" />
                         </div>
                     </div>
 
                     <div class="control-group" class="control-label">
-                        <label for="estado" class="control-label"><span class="required"></span></label>
+                        <label for="estado" class="control-label">Estado/Provincia</label>
                         <div class="controls">
-                            <select id="estado" name="estado">
-                                <option value="">Seleccione Su Estado...</option>
+                            <input id="estado" type="text" name="estado" value="<?php echo set_value('estado'); ?>" />
+                        </div>
+                    </div>
+                    <div class="control-group" class="control-label">
+                        <label for="pais" class="control-label">País</label>
+                        <div class="controls">
+                            <select id="pais" name="pais" class="">
+                                <option value="">Seleccione...</option>
                             </select>
                         </div>
                     </div>
+                </form>
             </div>
             <div class="form-actions" style="background-color:transparent;border:none;padding: 10px;margin-bottom: 0">
                 <div class="span12">
@@ -193,15 +209,26 @@
     <script src="<?php echo base_url() ?>assets/js/jquery.validate.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
-
-            $.getJSON('<?php echo base_url() ?>assets/json/estados.json', function(data) {
-                for (i in data.estados) {
-                    $('#estado').append(new Option(data.estados[i].nome, data.estados[i].sigla));
-                    var curState = '<?php echo set_value('estado'); ?>';
-                    if (curState) {
-                        $("#estado option[value=" + curState + "]").prop("selected", true);
+            $.getJSON('<?php echo base_url() ?>assets/json/countries.json', function(data) {
+                $('#pais').change((e) => {
+                    var value = e.target.value
+                    var country = data.filter((e) => e.name == value)[0]
+                    if(country) {
+                        $(`input[name="codpais"]`).val(country.callingCodes[0])
+                        $('.callingcode').html(`<img src="${country.flags.png}" width="24"/> <span class="text-muted">+${country.callingCodes[0]}</span>`)
                     }
+                })
+                for (i in data) {
+                    $('#pais').append(new Option(data[i].name, data[i].name));
                 }
+
+                var curState = '<?php echo set_value('pais') ?: 'Argentina'; ?>';
+                var country = data.filter((e) => e.name == curState)[0]
+                if(country) {
+                    $('.callingcode').html(`<img src="${country.flags.png}" width="24"/> <span class="text-muted">+${country.callingCodes[0]}</span>`)
+                    $('input[name="codpais"]').val(country.callingCodes[0])
+                }
+                $("#pais option[value=" + curState + "]").prop("selected", true);
             });
 
             let container = document.querySelector('div');
@@ -308,8 +335,8 @@
 
     <!--Footer-part-->
     <div class="row-fluid">
-        <div id="footer" class="span12" style="padding: 10px"> <a class="pecolor" href="https://electronicagambino.com" target="_blank">
-                <?= date('Y') ?> &copy; Electrónica Gambino - Versión: <?= $this->config->item('app_version'); ?>
+        <div id="footer" class="span12" style="padding: 10px"> <a class="pecolor" href="https://mi-iphone.com.ar" target="_blank">
+                <?= date('Y') ?> &copy; MI iPhone - Versión: <?= $this->config->item('app_version'); ?>
     </div>
 
 

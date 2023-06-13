@@ -73,7 +73,7 @@
         </div>
         <div class="modal-body">
             <input type="hidden" id="charge_id" name="charge_id" value="" />
-            <h5 style="text-align: center">¿Realmente desea eliminar este cargo? El cargo será cancelado.</h5>
+            <h5 style="text-align: center">¿Realmente desea eliminar este cargo? El cargo será Cancelado.</h5>
         </div>
         <div class="modal-footer">
             <button class="btn" data-dismiss="modal" aria-hidden="true">Cancelar</button>

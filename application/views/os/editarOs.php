@@ -1,6 +1,8 @@
 <link rel="stylesheet" href="<?php echo base_url(); ?>assets/js/jquery-ui/css/smoothness/jquery-ui-1.9.2.custom.css" />
 <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/patternlock.min.css">
 <link rel="stylesheet" href="<?php echo base_url() ?>assets/trumbowyg/ui/trumbowyg.css">
+<link rel="stylesheet" href="<?php echo base_url() ?>assets/css/dragtable.css">
+<link rel="stylesheet" href="<?php echo base_url() ?>assets/css/animate.css">
 
 <script type="text/javascript" src="<?php echo base_url() ?>assets/js/jquery-ui/js/jquery-ui-1.9.2.custom.js"></script>
 <script type="text/javascript" src="<?php echo base_url() ?>assets/js/jquery.validate.js"></script>
@@ -12,6 +14,10 @@
 <style>
     .ui-datepicker {
         z-index: 99999 !important;
+    }
+
+    .promptable {
+        cursor: copy;
     }
 
     .trumbowyg-box {
@@ -32,7 +38,7 @@
                 </span>
                 <h5>Editar Orden de Servicio</h5>
                 <div class="buttons">
-                    <?php if ($result->faturado == 0) { ?>
+                    <?php if ($result->Facturado == 0) { ?>
                         <a href="#modal-faturar" id="btn-faturar" role="button" data-toggle="modal" class="button btn btn-mini btn-danger">
                             <span class="button__icon"><i class='bx bx-dollar'></i></span> <span class="button__text">Facturar</span></a>
                     <?php
@@ -46,7 +52,7 @@
                     <?php if ($this->permission->checkPermission($this->session->userdata('permissao'), 'eOs')) {
                         $this->load->model('os_model');
                         $zapnumber = preg_replace("/[^0-9]/", "", $result->celular_cliente);
-                        $troca = [$result->nomeCliente, $result->idOs, $result->status, 'R$ ' . ($result->desconto != 0 && $result->valor_desconto != 0 ? number_format($result->valor_desconto, 2, ',', '.') : number_format($totalProdutos + $totalServico, 2, ',', '.')), strip_tags($result->descricaoProduto), ($emitente ? $emitente[0]->nome : ''), ($emitente ? $emitente[0]->telefone : ''), strip_tags($result->observacoes), strip_tags($result->defeito), strip_tags($result->laudoTecnico), date('d/m/Y', strtotime($result->dataFinal)), date('d/m/Y', strtotime($result->dataInicial)), $result->garantia . ' dias'];
+                        $troca = [$result->nomeCliente, $result->idOs, $result->status, '$ ' . ($result->desconto != 0 && $result->valor_desconto != 0 ? number_format($result->valor_desconto, 2, ',', '.') : number_format($totalProdutos + $totalServico, 2, ',', '.')), strip_tags($result->descricaoProduto), ($emitente ? $emitente[0]->nome : ''), ($emitente ? $emitente[0]->telefone : ''), strip_tags($result->observacoes), strip_tags($result->defeito), strip_tags($result->laudoTecnico), date('d/m/Y', strtotime($result->dataFinal)), date('d/m/Y', strtotime($result->dataInicial)), $result->garantia . ' dias'];
                         $texto_de_notificacao = $this->os_model->criarTextoWhats($texto_de_notificacao, $troca);
                         if (!empty($zapnumber)) {
                             echo '<a title="Vía WhatsApp" class="button btn btn-mini btn-success" id="enviarWhatsApp" target="_blank" href="https://wa.me/send?phone=54' . $zapnumber . '&text=' . $texto_de_notificacao . '" ' . ($zapnumber == '' ? 'disabled' : '') . '>
@@ -54,8 +60,8 @@
                         }
                     } ?>
 
-                    <a title="Enviar por E-mail" class="button btn btn-mini btn-warning" href="<?php echo site_url() ?>/os/enviar_email/<?php echo $result->idOs; ?>">
-                        <span class="button__icon"><i class="bx bx-envelope"></i></span> <span class="button__text">Via E-mail</span></a>
+                    <!--a title="Enviar por E-mail" class="button btn btn-mini btn-warning" href="<?php echo site_url() ?>/os/enviar_email/<?php echo $result->idOs; ?>">
+                        <span class="button__icon"><i class="bx bx-envelope"></i></span> <span class="button__text">Via E-mail</span></a-->
                     <?php if ($result->garantias_id) { ?> <a target="_blank" title="Imprimir Garantía" class="button btn btn-mini btn-inverse" href="<?php echo site_url() ?>/garantias/imprimir/<?php echo $result->garantias_id; ?>">
                             <span class="button__icon"><i class="bx bx-printer"></i></span> <span class="button__text">Garantía</span></a> <?php } ?>
                 </div>
@@ -95,25 +101,25 @@
                                         <div class="span3">
                                             <label for="status">Estado<span class="required">*</span></label>
                                             <select class="span12" name="status" id="status" value="">
-                                                <option <?php if ($result->status == 'Orçamento') {
+                                                <option <?php if ($result->status == 'Presupuesto') {
                                                     echo 'selected';
-                                                } ?> value="Orçamento">Presupuesto
+                                                } ?> value="Presupuesto">Presupuesto
                                                 </option>
-                                                <option <?php if ($result->status == 'Aberto') {
+                                                <option <?php if ($result->status == 'Abierto') {
                                                     echo 'selected';
-                                                } ?> value="Aberto">Abierto
+                                                } ?> value="Abierto">Abierto
                                                 </option>
-                                                <option <?php if ($result->status == 'Faturado') {
+                                                <option <?php if ($result->status == 'Facturado') {
                                                     echo 'selected';
-                                                } ?> value="Faturado">Facturado
+                                                } ?> value="Facturado">Facturado
                                                 </option>
-                                                <option <?php if ($result->status == 'Negociação') {
+                                                <option <?php if ($result->status == 'Negociando') {
                                                     echo 'selected';
-                                                } ?> value="Negociação">Negociando
+                                                } ?> value="Negociando">Negociando
                                                 </option>
-                                                <option <?php if ($result->status == 'Em Andamento') {
+                                                <option <?php if ($result->status == 'En Proceso') {
                                                     echo 'selected';
-                                                } ?> value="Em Andamento">En Proceso
+                                                } ?> value="En Proceso">En Proceso
                                                 </option>
                                                 <option <?php if ($result->status == 'Finalizado') {
                                                     echo 'selected';
@@ -123,13 +129,13 @@
                                                     echo 'selected';
                                                 } ?> value="Cancelado">Cancelado
                                                 </option>
-                                                <option <?php if ($result->status == 'Aguardando Peças') {
+                                                <option <?php if ($result->status == 'Aguardando Repuesto') {
                                                     echo 'selected';
-                                                } ?> value="Aguardando Peças">Aguardando Piezas/Repuestos
+                                                } ?> value="Aguardando Repuesto">Aguardando Repuesto
                                                 </option>
-                                                <option <?php if ($result->status == 'Aprovado') {
+                                                <option <?php if ($result->status == 'Aprobado') {
                                                     echo 'selected';
-                                                } ?> value="Aprovado">Aprobado
+                                                } ?> value="Aprobado">Aprobado
                                                 </option>
                                             </select>
                                         </div>
@@ -147,6 +153,28 @@
                                             <?php echo form_error('garantia'); ?>
                                         </div>
                                     </div>
+
+                                    <div class="span12" style="padding: 1%; margin-left: 0">
+                                        <div class="span3">
+                                            <label for="adelanto">Adelanto</label>
+                                            <input id="adelanto" class="span12" type="number" name="pin" value="<?php echo $result->adelanto ?>" />
+                                        </div>
+                                        <div class="span3">
+                                            <label for="categoria">Categoria</label>
+                                            <input id="categoria" class="span12" type="text" name="categoria" value="<?php echo $result->categoria ?>" />
+                                        </div>
+                                        <div class="span3">
+                                            <label for="pin">Lock pattern (code)</label>
+                                            <input type="number" class="span12" id="patternlock" name="patternlock" value="<?php echo $result->patternlock ?>" />
+                                        </div>
+
+                                        <div class="span3">
+                                            <label for="termoGarantia">Elija Garantía/Contrato</label>
+                                            <input id="termoGarantia" class="span12" type="text" name="termoGarantia" value="<?php echo $result->refGarantia ?>" />
+                                            <input id="garantias_id" class="span12" type="hidden" name="garantias_id" value="<?php echo $result->garantias_id ?>" />
+                                        </div>
+                                    </div>
+
                                     <div class="span12" style="padding: 1%; margin-left: 0">
                                         <div class="span3">
                                             <label for="pin">Pin</label>
@@ -172,17 +200,8 @@
                                                 </g>
                                             </svg>                             
                                         </div>
-                                        <div class="span3">
-                                            <label for="pin">Lock pattern (code)</label>
-                                            <input type="number" class="span12" id="patternlock" name="patternlock" value="<?php echo $result->patternlock ?>" />
-                                        </div>
+                                    </div>                                    
 
-                                        <div class="span3">
-                                            <label for="termoGarantia">Elija Garantía/Contrato</label>
-                                            <input id="termoGarantia" class="span12" type="text" name="termoGarantia" value="<?php echo $result->refGarantia ?>" />
-                                            <input id="garantias_id" class="span12" type="hidden" name="garantias_id" value="<?php echo $result->garantias_id ?>" />
-                                        </div>
-                                    </div>
 
                                     <div class="span6" style="padding: 1%; margin-left: 0">
                                         <label for="descricaoProduto">
@@ -297,7 +316,7 @@ foreach ($servicos as $s) {
                             </div>
                             <div class="widget-box" id="divProdutos">
                                 <div class="widget_content nopadding">
-                                    <table width="100%" class="table table-bordered" id="tblProdutos">
+                                    <table width="100%" class="table table-bordered" id="tblProdutos" data-url="/os/position/produtos_os">
                                         <thead>
                                             <tr>
                                                 <th>Producto</th>
@@ -312,11 +331,11 @@ foreach ($servicos as $s) {
                     $total = 0;
 foreach ($produtos as $p) {
     $total = $total + $p->subTotal;
-    echo '<tr>';
-    echo '<td>' . $p->descricao . '</td>';
-    echo '<td><div align="center">' . $p->quantidade . '</td>';
-    echo '<td><div align="center">$: ' . ($p->preco ?: $p->precoVenda)  . '</td>';
-    echo (strtolower($result->status) != "cancelado") ? '<td><div align="center"><a href="" idAcao="' . $p->idProdutos_os . '" prodAcao="' . $p->idProdutos . '" quantAcao="' . $p->quantidade . '" title="Eliminar Producto" class="btn-nwe4"><i class="bx bx-trash-alt"></i></a></td>' : '<td></td>';
+    echo '<tr data-id="' . $s->produto_id . '" data-os="' . $s->os_id . '" data-order="' . $s->position . '" data-id="' . $s->produtos_id . '" data-type="produtos">';
+    echo '<td><span class="promptable" data-name="name" title="Editar nombre del producto">' . $p->descricao . '<span></td>';
+    echo '<td><div align="center"><span class="promptable" data-name="quantidade" title="Editar cantidad del producto">' . $p->quantidade . '</td>';
+    echo '<td><div align="center"><span class="promptable" data-name="preco" title="Editar precio del producto">$: ' . ($p->preco ?: $p->precoVenda)  . '</span></td>';
+    echo (strtolower($result->status) != "Cancelado") ? '<td><div align="center" class="nowrap"><!--span type="produtos" title="Editar Producto" class="btn-nwe prompt-edit"><i class="bx bx-edit-alt drag-bypass"></i></span--><a href="" idAcao="' . $p->idProdutos_os . '" prodAcao="' . $p->idProdutos . '" quantAcao="' . $p->quantidade . '" title="Eliminar Producto" class="btn-nwe4"><i class="bx bx-trash-alt"></i></a></td>' : '<td></td>';
     echo '<td><div align="center">$: ' . number_format($p->subTotal, 2, ',', '.') . '</td>';
     echo '</tr>';
 } ?>
@@ -361,7 +380,7 @@ foreach ($produtos as $p) {
                             </div>
                             <div class="widget-box" id="divServicos">
                                 <div class="widget_content nopadding">
-                                    <table width="100%" class="table table-bordered" id="tblServicos">
+                                    <table width="100%" class="table table-bordered draggable-table" id="tblServicos" data-url="/os/position/servicos_os">
                                         <thead>
                                             <tr>
                                                 <th>Servicio</th>
@@ -378,12 +397,12 @@ foreach ($servicos as $s) {
     $preco = $s->preco ?: $s->precoVenda;
     $subtotals = $preco * ($s->quantidade ?: 1);
     $totals = $totals + $subtotals;
-    echo '<tr>';
-    echo '<td>' . $s->nome . '</td>';
-    echo '<td><div align="center">' . ($s->quantidade ?: 1) . '</div></td>';
-    echo '<td><div align="center">$ ' . $preco  . '</div></td>';
-    echo '<td><div align="center"><span idAcao="' . $s->idServicos_os . '" title="Eliminar Servicio" class="btn-nwe4 servico"><i class="bx bx-trash-alt"></i></span></div></td>';
-    echo '<td><div align="center">$: ' . number_format($subtotals, 2, ',', '.') . '</div></td>';
+    echo '<tr data-id="' . $s->servicos_id . '" data-os="' . $s->os_id . '" data-order="' . $s->position . '" data-type="servicos">';
+    echo '<td><span class="promptable" data-name="name" title="Editar nombre del servicio">' . $s->nome  . '</span></td>';
+    echo '<td><div align="center"><span class="promptable" data-name="quantidade" title="Editar nombre del servicio">' . ($s->quantidade ?: 1) . '</span></div></td>';
+    echo '<td><div align="center"><span class="promptable" data-name="preco" title="Editar precio del servicio">$ ' . $preco  . '</span></div></td>';
+    echo '<td><div align="center" class="nowrap"><!--span type="servicos" idRelated="' . $s->servicos_id . '" title="Editar Servicio" class="btn-nwe prompt-edit"><i class="bx bx-edit-alt drag-bypass"></i></span--><span idAcao="' . $s->idServicos_os . '" title="Eliminar Servicio" class="btn-nwe servico"><i class="bx bx-trash-alt drag-bypass"></i></span></div></td>';
+    echo '<td><div align="center">$' . number_format($subtotals, 2, ',', '.') . '</div></td>';
     echo '</tr>';
 } ?>
                                         </tbody>
@@ -586,7 +605,10 @@ foreach ($servicos as $s) {
                             <option value="Boleto">Transferencia</option>
                             <option value="Depósito">Depósito</option>
                             <option value="Pix">MercadoPago</option>
+                            <option value="Promissória">PayPal</option>
+                            <option value="Transferência TED">Wise</option>
                             <option value="Cheque">Cheque</option>
+                            
                         </select>
                     </div>
                 </div>
@@ -600,6 +622,7 @@ foreach ($servicos as $s) {
 </div>
 
 <script src="<?php echo base_url(); ?>assets/js/maskmoney.js"></script>
+<script type="text/javascript" src="<?php echo base_url() ?>assets/js/dragtable.js" charset="utf-8"></script>
 
 <script type="text/javascript">
     function calcDesconto(valor, desconto, tipoDesconto) {
@@ -1146,7 +1169,40 @@ foreach ($servicos as $s) {
             }
         });
 
+        $(document).on('click', '.promptable', function(event) {
+            var td = $(this)
+            var tr = td.closest('tr')
+            var id = tr.data('id');
+            var type = tr.data('type');
+            var os = tr.data('os');
+            var name = td.data('name')
+            var value = prompt(td.attr('title'), td.text())
+            if(value !== null && value.trim() !== '') {
+                $.ajax({
+                    type: "POST",
+                    url: "<?php echo base_url(); ?>index.php/os/quickEdit",
+                    data: "type=" + type + "&value=" + value + "&id=" + id + "&name=" + name + "&os=" + os,
+                    dataType: 'json',
+                    success: function(data) {
+                        if(data.status === 400) {
+                            alert(data.message)
+                        } else {
+                            td.text(value)
+                            document.querySelector('.draggable-saved').classList.remove('chatOut')
+                            document.querySelector('.draggable-saved').classList.add('chatIn')
+                            setTimeout(() => {
+                              document.querySelector('.draggable-saved').classList.remove('chatIn')
+                              document.querySelector('.draggable-saved').classList.add('chatOut')
+                            }, 3000)                            
+                        }
+                    }
+                })
+            }
+            
+        })
+
         $(document).on('click', 'a', function(event) {
+            
             var idProduto = $(this).attr('idAcao');
             var quantidade = $(this).attr('quantAcao');
             var produto = $(this).attr('prodAcao');

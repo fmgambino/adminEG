@@ -4,6 +4,8 @@ use Libraries\Gateways\BasePaymentGateway;
 use Libraries\Gateways\Contracts\PaymentGateway;
 use MercadoPago\Payment;
 use MercadoPago\SDK;
+use Mpdf\QrCode\QrCode;
+use Mpdf\QrCode\Output;
 
 class MercadoPago extends BasePaymentGateway
 {
@@ -222,18 +224,41 @@ class MercadoPago extends BasePaymentGateway
         $expirationDate = (new DateTime())->add(new DateInterval($this->mercadoPagoConfig['boleto_expiration']));
         $expirationDate = ($expirationDate->format(DateTime::RFC3339_EXTENDED));
 
-        $payment = new Payment();
+
+        /*$payment = new Payment();
         $payment->transaction_amount = floatval($this->valorTotal($totalProdutos, $totalServicos, $totalDesconto, $tipoDesconto));
-        $payment->description = PaymentGateway::PAYMENT_TYPE_OS ? "OS #$id" : "Venda #$id";
-        $payment->payment_method_id = "bolbradesco";
-        $payment->notification_url = "http://Sgtos.com.br/";
-        $payment->date_of_expiration = $expirationDate;
+        $payment->description = PaymentGateway::PAYMENT_TYPE_OS ? "OS #$id" : "Venta #$id";
+        $payment->payment_method_id = "";
+        //$payment->notification_url = base_url();
+        $payment->notification_url = 'https://mi-iphone.com.ar/mp_logs';
+        //$payment->date_of_expiration = $expirationDate;
         $payment->payer = [
             'email' => $entity->email,
             'first_name' => $clientNameParts[0],
             'last_name' => $clientNameParts[count($clientNameParts) - 1],
             'identification' => [
-                'type' => strlen($documento) == 11 ? 'CPF' : 'CNPJ',
+                'type' => 'DNI', // strlen($documento) == 11 ? 'CPF' : 'CNPJ',
+                'number' => $documento
+            ],
+            'address' => [
+                'zip_code' => preg_replace('/[^0-9]/', '', $entity->cep),
+                'street_name' => $entity->rua,
+                'street_number' => $entity->numero,
+                'neighborhood' => $entity->bairro,
+                'city' => $entity->cidade,
+                'federal_unit' => $entity->estado
+            ]
+        ];*/
+
+        $transaction_amount = floatval($this->valorTotal($totalProdutos, $totalServicos, $totalDesconto, $tipoDesconto));
+        
+        $title = PaymentGateway::PAYMENT_TYPE_OS ? "OS #$id" : "Venta #$id";
+        $payer = [
+            'email' => $entity->email,
+            'first_name' => $clientNameParts[0],
+            'last_name' => $clientNameParts[count($clientNameParts) - 1],
+            'identification' => [
+                'type' => 'DNI', // strlen($documento) == 11 ? 'CPF' : 'CNPJ',
                 'number' => $documento
             ],
             'address' => [
@@ -246,18 +271,73 @@ class MercadoPago extends BasePaymentGateway
             ]
         ];
 
-        $payment->save();
-        if ($payment->Error()) {
+        $preference = new MercadoPago\Preference();
+
+        // Create a preference item
+        $item = new MercadoPago\Item();
+        $item->title = $title;
+        $item->quantity = 1;
+        $item->unit_price = $transaction_amount;
+        $preference->items = array($item);
+        $preference->save();
+
+        if ($preference->Error()) {
             throw new \Exception($payment->Error());
         }
 
+        // qr code
+        $public_qr = base_url() . "assets/qrs/{$preference->id}.png";
+        $init_point = $preference->init_point;
+        $qrCode = new QrCode($init_point);
+        $output = new Output\Png();
+        $qrs_path = '/../../assets/qrs/';
+        // Save black on white PNG image 100px wide to filename.png
+        $data = $output->output($qrCode, 500, [255, 255, 255], [0, 0, 0]);
+        $filedest = dirname(__DIR__) . "{$qrs_path}{$preference->id}.png";
+        file_put_contents($filedest, $data);
+
+        // send client notification for this service order
+        $this->ci->load->library('email'); // Note: no $config param needed
+        //$this->email->from('cobranzas@mi-iphone.com', 'cobran@gmail.com');
+        $this->ci->email->to($payer['email']);
+        $this->ci->email->subject("Ya puede efectuar su pago para Orden de servicio #{$id}");
+        $this->ci->email->attach($filedest);
+        $this->ci->email->message("
+COBRANZA DE MI-iPhone<br><br>
+
+Asunto: Factura de su Orden de Servicio en https://mi-iphone.com.ar<br><br>
+
+Estimado/a [Nombre del cliente],<br><br>
+
+Esperamos que este correo electrónico lo encuentre bien. El motivo de nuestro mensaje es para informarle que su Orden de Servicio ha sido facturada y está lista para su pago. En https://mi-iphone.com.ar nos esforzamos por brindar un servicio de calidad y rapidez en la reparación de sus dispositivos, y estamos seguros de que encontrará nuestra factura precisa y detallada.<br><br>
+
+Le ofrecemos varias opciones de pago, pero le recomendamos utilizar MercadoPago para una transacción rápida y segura. Podrá abonar su factura haciendo click en el siguiente enlace {$init_point} o escaneando el código QR adjunto. Los detalles de su factura son los siguientes:<br><br>
+
+ID externo (charge_id): {$preference->id}<br>
+ID interno: {$id}<br>
+Valor de la Cobranza: {$transaction_amount}<br>
+Método de Pago: Mercadopago<br>
+Vencimiento: 30 días<br><br>
+
+Si tiene alguna pregunta sobre su factura o necesita ayuda para procesar su pago, no dude en ponerse en contacto con nosotros. Estamos aquí para ayudarlo en cualquier momento.<br><br>
+
+Agradecemos su confianza en https://mi-iphone.com.ar, y esperamos seguir siendo su proveedor de confianza para la reparación de sus dispositivos.<br><br>
+
+Atentamente,<br>
+El equipo de MI-iPhone<br>
+Whatsapp Business Wa.me/541128715389<br>
+Nuestra web: https://mi-iphone.com.ar
+");
+
+        $this->ci->email->send();
         $data = [
-            'barcode' => $payment->barcode->content,
-            'link' => $payment->transaction_details->external_resource_url,
-            'pdf' => $payment->transaction_details->external_resource_url,
-            'expire_at' => $payment->date_of_expiration,
-            'charge_id' => $payment->id,
-            'status' => $payment->status,
+            'barcode' => $public_qr,
+            'payment_url' => $preference->init_point,
+            //'link' => $preference->init_point,
+            //'pdf' => '',
+            //'expire_at' => $preference->date_of_expiration,
+            'charge_id' => $preference->id,
+            //'status' => $preference->status,
             'total' => getMoneyAsCents($this->valorTotal($totalProdutos, $totalServicos, $totalDesconto, $tipoDesconto)),
             'clientes_id' => $entity->idClientes,
             'payment_method' => 'boleto',
@@ -272,7 +352,7 @@ class MercadoPago extends BasePaymentGateway
 
         if ($id = $this->ci->cobrancas_model->add('cobrancas', $data, true)) {
             $data['idCobranca'] = $id;
-            log_info('Cobrança criada com successo. ID: ' . $payment->id);
+            log_info('Cobrança criada com successo. ID: ' . $preference->id);
         } else {
             throw new \Exception('Erro ao salvar cobrança!');
         }
@@ -297,4 +377,23 @@ class MercadoPago extends BasePaymentGateway
 
         return ($produtosValor + $servicosValor) - $def_desconto;
     }
+
+
+    public function send_mail() {
+        $from_email = "electronicagambino@gmail.com";
+        $to_email = $this->input->post('email');
+        //Load email library
+        $this->load->library('email');
+        $this->email->from($from_email, 'Identification');
+        $this->email->to($to_email);
+        $this->email->subject('Send Email Codeigniter');
+        $this->email->message('The email send using codeigniter library');
+        //Send mail
+        if($this->email->send())
+            $this->session->set_flashdata("email_sent","Congragulation Email Send Successfully.");
+        else
+            $this->session->set_flashdata("email_sent","You have encountered an error");
+        $this->load->view('contact_email_form');
+    }    
+
 }

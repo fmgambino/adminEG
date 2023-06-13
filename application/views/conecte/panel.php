@@ -110,7 +110,7 @@
                         <th>#</th>
                         <th>Fecha de Venta</th>
                         <th>Responsable</th>
-                        <th>Facturado</th>
+                        <th>Faturado</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -118,16 +118,16 @@
                     <?php
             if ($compras != null) {
                 foreach ($compras as $p) {
-                    if ($p->faturado == 1) {
-                        $faturado = 'Si';
+                    if ($p->Faturado == 1) {
+                        $Faturado = 'Si';
                     } else {
-                        $faturado = 'No';
+                        $Faturado = 'No';
                     }
                     echo '<tr>';
                     echo '<td>' . $p->idVendas . '</td>';
                     echo '<td>' . date('d/m/Y', strtotime($p->dataVenda)) . '</td>';
                     echo '<td>' . $p->nome . '</td>';
-                    echo '<td>' . $faturado . '</td>';
+                    echo '<td>' . $Faturado . '</td>';
                     echo '<td> <a href="' . base_url() . 'index.php/mine/visualizarCompra/' . $p->idVendas . '" class="btn"> <i class="fas fa-eye" ></i> </a></td>';
                     echo '</tr>';
                 }

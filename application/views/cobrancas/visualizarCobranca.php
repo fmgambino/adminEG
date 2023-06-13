@@ -67,7 +67,7 @@
                             </td>
                         </tr>
 
-                        <trz
+                        <tr>
                             <td style="text-align: right"><strong>Valor de la cobranza</strong></td>
                             <td>$
                                 <?php echo number_format($result->total / 100, 2, ',', '.'); ?>
@@ -109,13 +109,13 @@
                         </tr>
 
                         <tr>
-                            <td style="text-align: right"><strong>Código de barras</strong></td>
+                            <td style="text-align: right"><strong>Código QR</strong></td>
                             <td>
-                                <?php echo $result->barcode; ?>
+                                <img src="<?php echo $result->barcode; ?>" width="100">
                             </td>
                         </tr>
 
-                        <tr>
+                        <!--tr>
                             <td style="text-align: right"><strong>Link</strong></td>
                             <td>
                                 <?php if ($result->link) { ?>
@@ -138,7 +138,7 @@
                             <td>
                                 <?php echo $result->message; ?>
                             </td>
-                        </tr>
+                        </tr-->
                     </tbody>
                 </table>
             </div>

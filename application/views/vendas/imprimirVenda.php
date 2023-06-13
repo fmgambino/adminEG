@@ -45,7 +45,7 @@
                                                         <span class="icon">
                                                             <i class="fas fa-comments" style="margin:5px 1px"></i>
                                                             E-mail:
-                                                            <?php echo $emitente[0]->email . ' - Fone: ' . $emitente[0]->telefone; ?> </br>
+                                                            <?php echo $emitente[0]->email . ' - Tel: ' . $emitente[0]->telefone; ?> </br>
                                                             <span class="icon">
                                                                 <i class="fas fa-user-check"></i>
                                                                 Vendedor: <?php echo $result->nome ?>
@@ -55,7 +55,7 @@
                                                 <?php echo $result->idVendas ?></span></br> </br> <span>Emitido:
                                                 <?php echo date('d/m/Y'); ?></span>
 
-                                            <?php if ($result->faturado) : ?>
+                                            <?php if ($result->Faturado) : ?>
                                                 <br>
                                                 Vencimiento:
                                                 <?php echo date('d/m/Y', strtotime($result->data_vencimento)); ?>

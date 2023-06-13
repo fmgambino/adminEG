@@ -52,7 +52,7 @@ class Vendas_model extends CI_Model
     public function isEditable($id = null)
     {
         if ($vendas = $this->getById($id)) {
-            if ($vendas->faturado) {
+            if ($vendas->Faturado) {
                 return $this->data['configuration']['control_edit_vendas'] == '1';
             }
         }

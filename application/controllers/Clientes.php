@@ -5,7 +5,7 @@
 class Clientes extends MY_Controller
 {
     /**
-     * author: Electrónica Gambino
+     * author: MI iPhone
      * email: electronicagambino@gmail.com
      *
      */
@@ -71,6 +71,8 @@ class Clientes extends MY_Controller
                 'bairro' => set_value('bairro'),
                 'cidade' => set_value('cidade'),
                 'estado' => set_value('estado'),
+                'pais' => set_value('pais'),
+                'codpais' => set_value('codpais'),
                 'cep' => set_value('cep'),
                 'dataCadastro' => date('Y-m-d'),
                 'fornecedor' => (set_value('fornecedor') == true ? 1 : 0),
@@ -125,6 +127,8 @@ class Clientes extends MY_Controller
                     'bairro' => $this->input->post('bairro'),
                     'cidade' => $this->input->post('cidade'),
                     'estado' => $this->input->post('estado'),
+                    'pais' => $this->input->post('pais'),
+                    'codpais' => $this->input->post('codpais'),
                     'cep' => $this->input->post('cep'),
                     'fornecedor' => (set_value('fornecedor') == true ? 1 : 0),
                 ];
@@ -142,6 +146,8 @@ class Clientes extends MY_Controller
                     'bairro' => $this->input->post('bairro'),
                     'cidade' => $this->input->post('cidade'),
                     'estado' => $this->input->post('estado'),
+                    'pais' => $this->input->post('pais'),
+                    'codpais' => $this->input->post('codpais'),
                     'cep' => $this->input->post('cep'),
                     'fornecedor' => (set_value('fornecedor') == true ? 1 : 0),
                 ];

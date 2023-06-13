@@ -108,6 +108,7 @@
                                 <select class="span12" name="notifica_whats_select" id="notifica_whats_select" value="">
                                     <option value="0">Seleccione...</option>
                                     <option value="{CLIENTE_NOME}">Nombre del Cliente</option>
+                                    <option value="{E_MAIL}">Email del Cliente</option>
                                     <option value="{NUMERO_OS}">Número de OS</option>
                                     <option value="{STATUS_OS}">Estado de OS</option>
                                     <option value="{VALOR_OS}">Valor de OS</option>
@@ -235,15 +236,15 @@
                             <div class="span8">
                                 <span6 class="span10" style="margin-left: 2em;"> Establezca la vista predeterminada, donde lo que se comprueba se mostrará en la lista de la OS de forma predeterminada. </span6>
                                 <div class="span10" style="margin-left: 3em;">
-                                    <label> <input <?= @in_array("Aberto", json_decode($configuration['os_status_list'])) == 'true' ? 'checked' : ''; ?> name="os_status_list[]" class="marcar" type="checkbox" value="Aberto"> <span class="lbl"> Abierto</span> </label>
-                                    <label> <input <?= @in_array("Faturado", json_decode($configuration['os_status_list'])) == 'true' ? 'checked' : ''; ?> name="os_status_list[]" class="marcar" type="checkbox" value="Faturado"> <span class="lbl"> Fatucrado</span> </label>
-                                    <label> <input <?= @in_array("Negociação", json_decode($configuration['os_status_list'])) == 'true' ? 'checked' : ''; ?> name="os_status_list[]" class="marcar" type="checkbox" value="Negociação"> <span class="lbl"> Negociación</span> </label>
-                                    <label> <input <?= @in_array("Em Andamento", json_decode($configuration['os_status_list'])) == 'true' ? 'checked' : ''; ?> name="os_status_list[]" class="marcar" type="checkbox" value="Em Andamento"> <span class="lbl"> En proceso</span> </label>
-                                    <label> <input <?= @in_array("Orçamento", json_decode($configuration['os_status_list'])) == 'true' ? 'checked' : ''; ?> name="os_status_list[]" class="marcar" type="checkbox" value="Orçamento"> <span class="lbl"> Presupuesto</span> </label>
+                                    <label> <input <?= @in_array("Abierto", json_decode($configuration['os_status_list'])) == 'true' ? 'checked' : ''; ?> name="os_status_list[]" class="marcar" type="checkbox" value="Abierto"> <span class="lbl"> Abierto</span> </label>
+                                    <label> <input <?= @in_array("Facturado", json_decode($configuration['os_status_list'])) == 'true' ? 'checked' : ''; ?> name="os_status_list[]" class="marcar" type="checkbox" value="Facturado"> <span class="lbl"> Facturado</span> </label>
+                                    <label> <input <?= @in_array("Negociando", json_decode($configuration['os_status_list'])) == 'true' ? 'checked' : ''; ?> name="os_status_list[]" class="marcar" type="checkbox" value="Negociando"> <span class="lbl"> Negociando</span> </label>
+                                    <label> <input <?= @in_array("En Proceso", json_decode($configuration['os_status_list'])) == 'true' ? 'checked' : ''; ?> name="os_status_list[]" class="marcar" type="checkbox" value="En Proceso"> <span class="lbl"> En proceso</span> </label>
+                                    <label> <input <?= @in_array("Presupuesto", json_decode($configuration['os_status_list'])) == 'true' ? 'checked' : ''; ?> name="os_status_list[]" class="marcar" type="checkbox" value="Presupuesto"> <span class="lbl"> Presupuesto</span> </label>
                                     <label> <input <?= @in_array("Finalizado", json_decode($configuration['os_status_list'])) == 'true' ? 'checked' : ''; ?> name="os_status_list[]" class="marcar" type="checkbox" value="Finalizado"> <span class="lbl"> Finalizado</span> </label>
                                     <label> <input <?= @in_array("Cancelado", json_decode($configuration['os_status_list'])) == 'true' ? 'checked' : ''; ?> name="os_status_list[]" class="marcar" type="checkbox" value="Cancelado"> <span class="lbl"> Cancelado</span> </label>
-                                    <label> <input <?= @in_array("Aguardando Peças", json_decode($configuration['os_status_list'])) == 'true' ? 'checked' : ''; ?> name="os_status_list[]" class="marcar" type="checkbox" value="Aguardando Peças"> <span class="lbl"> Esperando  Piezas/Repuestos </span> </label>
-                                    <label> <input <?= @in_array("Aprovado", json_decode($configuration['os_status_list'])) == 'true' ? 'checked' : ''; ?> name="os_status_list[]" class="marcar" type="checkbox" value="Aprovado"> <span class="lbl"> Aprobado </span> </label>
+                                    <label> <input <?= @in_array("Aguardando Repuesto", json_decode($configuration['os_status_list'])) == 'true' ? 'checked' : ''; ?> name="os_status_list[]" class="marcar" type="checkbox" value="Aguardando Repuesto"> <span class="lbl"> Aguardando Repuesto </span> </label>
+                                    <label> <input <?= @in_array("Aprobado", json_decode($configuration['os_status_list'])) == 'true' ? 'checked' : ''; ?> name="os_status_list[]" class="marcar" type="checkbox" value="Aprobado"> <span class="lbl"> Aprobado </span> </label>
                                 </div>
                             </div>
                         </div>

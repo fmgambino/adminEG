@@ -42,12 +42,10 @@ $config['app_subname'] = 'Al Sistema de Gestion de Mi-IPhone';
 
 //SERVIDOR DE PRUEBAS HOSTINGER DE ELECTRONICAGAMBINO
 //$config['base_url'] = 'https://mi-iphone.midemo.tech';
-$config['base_url'] = $_SERVER['REMOTE_ADDR'] == '::1' ? 
-  'http://localhost:9000' : 
-  'https://electronicagambino.com/admin';
+$config['base_url'] = $_SERVER['REMOTE_ADDR'] == '127.0.0.1' || $_SERVER['REMOTE_ADDR'] == '::' ? 'http://localhost:8000' : 'https://mi-iphone.com.ar';
 
 //LOCALHOST ING. GAMBINO
-// $config['base_url'] = 'http://localhost/myIphone';
+ //$config['base_url'] = 'http://localhost/myIphone';
 
 //LOCALHOST ING. ZENTENO
 // $config['base_url'] = 'http://localhost/mi-iphone';
@@ -250,7 +248,7 @@ $config['allow_get_array'] = true;
 | your log files will fill up very fast.
 |
 */
-$config['log_threshold'] = 1;
+$config['log_threshold'] = 4;
 
 /*
 |--------------------------------------------------------------------------

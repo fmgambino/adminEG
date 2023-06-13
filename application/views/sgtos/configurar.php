@@ -15,7 +15,7 @@
                 <li><a data-toggle="tab" href="#menu4">Actualizaciones</a></li>
                 <li><a data-toggle="tab" href="#menu5">OS</a></li>
             </ul>
-            <form action="<?php echo current_url(); ?>" id="formConfigurar" method="post" class="form-horizontal">
+            <form action="<?php echo current_url(); ?>" id="formConfigurar" method="post" class="form-horizontal" enctype="multipart/form-data">
                 <div class="widget-content nopadding tab-content">
                     <?php echo $custom_error; ?>
                     <!-- Menu Gerais -->
@@ -64,6 +64,31 @@
                                 <span class="help-inline">Habilitar o deshabilitar la visualización en tablas dinámicas</span>
                             </div>
                         </div>
+                        <div class="control-group">
+                            <label for="logo" class="control-label"><span>Logo (light)</span></label>
+                            <div class="controls">
+                                <input type="file" name="logo" value="" />
+                                <span class="help-inline">Formato PNG, Tamaño recomendado 512x512px</span>
+                            </div>                    
+                        </div>
+                        <div class="control-group">
+                            <label for="logo_dark" class="control-label"><span>Logo (darkmode)</span></label>
+                            <div class="controls">
+                                <input type="file" name="logo_dark" value="" />
+                                <span class="help-inline">Formato PNG, Tamaño recomendado 512x512px</span>
+                            </div>
+                            
+                        </div>
+
+                        <div class="control-group">
+                            <label for="favicon" class="control-label"><span>Favicon</span></label>
+                            <div class="controls">
+                                <input type="file" name="favicon" value="" />
+                                <span class="help-inline">Formato PNG, Tamaño recomendado 512x512px</span>
+                            </div>
+                            
+                        </div>
+
                         <div class="form-actions">
                             <div class="span8">
                                 <div class="span9">
@@ -108,6 +133,7 @@
                                 <select class="span12" name="notifica_whats_select" id="notifica_whats_select" value="">
                                     <option value="0">Selecione...</option>
                                     <option value="{CLIENTE_NOME}">Nombre del Cliente</option>
+                                    <option value="{E_MAIL}">Email del Cliente</option>
                                     <option value="{NUMERO_OS}">Número de OS</option>
                                     <option value="{STATUS_OS}">Estado OS</option>
                                     <option value="{VALOR_OS}">Valor de OS</option>
@@ -156,7 +182,7 @@
                                     <option value="1" <?= $configuration['control_editos'] == '0' ? 'selected' : ''; ?>>Activar</option>
                                     <option value="0" <?= $configuration['control_editos'] == '0' ? 'selected' : ''; ?>>Desactivar</option>
                                 </select>
-                                <span class="help-inline">Habilitar o deshabilitar el permiso para cambiar o eliminar la OS facturado y/o cancelado.</span>
+                                <span class="help-inline">Habilitar o deshabilitar el permiso para cambiar o eliminar la OS Faturado y/o Cancelado.</span>
                             </div>
                         </div>
                         <div class="control-group">
@@ -235,15 +261,15 @@
                             <div class="span8">
                                 <span6 class="span10" style="margin-left: 2em;"> Establezca la vista predeterminada, donde lo que se comprueba se mostrará en la lista de OS de forma predeterminada. </span6>
                                 <div class="span10" style="margin-left: 3em;">
-                                    <label> <input <?= @in_array("Aberto", json_decode($configuration['os_status_list'])) == 'true' ? 'checked' : ''; ?> name="os_status_list[]" class="marcar" type="checkbox" value="Aberto"> <span class="lbl"> Abierto</span> </label>
-                                    <label> <input <?= @in_array("Faturado", json_decode($configuration['os_status_list'])) == 'true' ? 'checked' : ''; ?> name="os_status_list[]" class="marcar" type="checkbox" value="Faturado"> <span class="lbl"> Facturado</span> </label>
-                                    <label> <input <?= @in_array("Negociação", json_decode($configuration['os_status_list'])) == 'true' ? 'checked' : ''; ?> name="os_status_list[]" class="marcar" type="checkbox" value="Negociação"> <span class="lbl"> Negociando</span> </label>
-                                    <label> <input <?= @in_array("Em Andamento", json_decode($configuration['os_status_list'])) == 'true' ? 'checked' : ''; ?> name="os_status_list[]" class="marcar" type="checkbox" value="Em Andamento"> <span class="lbl"> En Proceso</span> </label>
-                                    <label> <input <?= @in_array("Orçamento", json_decode($configuration['os_status_list'])) == 'true' ? 'checked' : ''; ?> name="os_status_list[]" class="marcar" type="checkbox" value="Orçamento"> <span class="lbl"> Presupuesto</span> </label>
+                                    <label> <input <?= @in_array("Abierto", json_decode($configuration['os_status_list'])) == 'true' ? 'checked' : ''; ?> name="os_status_list[]" class="marcar" type="checkbox" value="Abierto"> <span class="lbl"> Abierto</span> </label>
+                                    <label> <input <?= @in_array("Facturado", json_decode($configuration['os_status_list'])) == 'true' ? 'checked' : ''; ?> name="os_status_list[]" class="marcar" type="checkbox" value="Facturado"> <span class="lbl"> Facturado</span> </label>
+                                    <label> <input <?= @in_array("Negociando", json_decode($configuration['os_status_list'])) == 'true' ? 'checked' : ''; ?> name="os_status_list[]" class="marcar" type="checkbox" value="Negociando"> <span class="lbl"> Negociando</span> </label>
+                                    <label> <input <?= @in_array("En Proceso", json_decode($configuration['os_status_list'])) == 'true' ? 'checked' : ''; ?> name="os_status_list[]" class="marcar" type="checkbox" value="En Proceso"> <span class="lbl"> En Proceso</span> </label>
+                                    <label> <input <?= @in_array("Presupuesto", json_decode($configuration['os_status_list'])) == 'true' ? 'checked' : ''; ?> name="os_status_list[]" class="marcar" type="checkbox" value="Presupuesto"> <span class="lbl"> Presupuesto</span> </label>
                                     <label> <input <?= @in_array("Finalizado", json_decode($configuration['os_status_list'])) == 'true' ? 'checked' : ''; ?> name="os_status_list[]" class="marcar" type="checkbox" value="Finalizado"> <span class="lbl"> Finalizado</span> </label>
                                     <label> <input <?= @in_array("Cancelado", json_decode($configuration['os_status_list'])) == 'true' ? 'checked' : ''; ?> name="os_status_list[]" class="marcar" type="checkbox" value="Cancelado"> <span class="lbl"> Cancelado</span> </label>
-                                    <label> <input <?= @in_array("Aguardando Peças", json_decode($configuration['os_status_list'])) == 'true' ? 'checked' : ''; ?> name="os_status_list[]" class="marcar" type="checkbox" value="Aguardando Peças"> <span class="lbl"> Aguardando Piezas/Repuestos </span> </label>
-                                    <label> <input <?= @in_array("Aprovado", json_decode($configuration['os_status_list'])) == 'true' ? 'checked' : ''; ?> name="os_status_list[]" class="marcar" type="checkbox" value="Aprovado"> <span class="lbl"> Aprobado </span> </label>
+                                    <label> <input <?= @in_array("Aguardando Repuesto", json_decode($configuration['os_status_list'])) == 'true' ? 'checked' : ''; ?> name="os_status_list[]" class="marcar" type="checkbox" value="Aguardando Repuesto"> <span class="lbl"> Aguardando Piezas/Repuestos </span> </label>
+                                    <label> <input <?= @in_array("Aprobado", json_decode($configuration['os_status_list'])) == 'true' ? 'checked' : ''; ?> name="os_status_list[]" class="marcar" type="checkbox" value="Aprobado"> <span class="lbl"> Aprobado </span> </label>
                                 </div>
                             </div>
                         </div>

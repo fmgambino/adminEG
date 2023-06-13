@@ -6,6 +6,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="shortcut icon" type="image/png" href="<?= base_url(); ?>assets/img/faviconAppleWhiteBox.png" />
+  <link rel="manifest" href="<?= base_url(); ?>manifest.json">
+  <meta name="apple-mobile-web-app-status-bar" content="#aa7700">
+  <meta name="theme-color" content="black">        
   <link rel="stylesheet" href="<?= base_url(); ?>assets/css/bootstrap.min.css" />
   <link rel="stylesheet" href="<?= base_url(); ?>assets/css/bootstrap-responsive.min.css" />
   <link rel="stylesheet" href="<?= base_url(); ?>assets/css/matrix-style.css" />
@@ -39,6 +42,23 @@
   <script type="text/javascript" src="<?= base_url(); ?>assets/js/datatables.min.js"></script>
   <script type="text/javascript" src="<?= base_url(); ?>assets/js/sweetalert.min.js"></script>
   <script type="text/javascript">
+
+    window.addEventListener('load', () => {
+      registerSW();
+    });
+ 
+    // Register the Service Worker
+    async function registerSW() {
+      if ('serviceWorker' in navigator) {
+        try {
+          await navigator.serviceWorker.register('/serviceworker.js');
+        }
+        catch (e) {
+          console.log('SW registration failed');
+        }
+      }
+    }
+
     shortcut.add("escape", function() {
       location.href = '<?= base_url(); ?>';
     });

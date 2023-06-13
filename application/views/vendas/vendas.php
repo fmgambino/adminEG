@@ -24,7 +24,7 @@
                     <th>Nº</th>
                     <th>Fecha</th>
                     <th>Cliente</th>
-                    <th>Facturado</th>
+                    <th>Faturado</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -38,16 +38,16 @@
                     }
                     foreach ($results as $r) {
                         $dataVenda = date(('d/m/Y'), strtotime($r->dataVenda));
-                        if ($r->faturado == 1) {
-                            $faturado = 'Si';
+                        if ($r->Faturado == 1) {
+                            $Faturado = 'Si';
                         } else {
-                            $faturado = 'No';
+                            $Faturado = 'No';
                         }
                         echo '<tr>';
                         echo '<td>' . $r->idVendas . '</td>';
                         echo '<td>' . $dataVenda . '</td>';
                         echo '<td><a href="' . base_url() . 'index.php/clientes/visualizar/' . $r->idClientes . '">' . $r->nomeCliente . '</a></td>';
-                        echo '<td>' . $faturado . '</td>';
+                        echo '<td>' . $Faturado . '</td>';
                         echo '<td>';
                         if ($this->permission->checkPermission($this->session->userdata('permissao'), 'vVenda')) {
                             echo '<a style="margin-right: 1%" href="' . base_url() . 'index.php/vendas/visualizar/' . $r->idVendas . '" class="btn-nwe" title="Ver más detalles"><i class="bx bx-show bx-xs"></i></a>';

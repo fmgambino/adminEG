@@ -38,16 +38,21 @@
                         </div>
                     </div>
                     <div class="control-group">
-                        <label for="telefone" class="control-label">Teléfono<span class="required">*</span></label>
+                        <label for="telefone" class="control-label">Teléfono</label>
                         <div class="controls">
-                            <input id="telefone" type="text" name="telefone" value="<?php echo $result->telefone; ?>" />
+                            <div class="input-prepend">
+                                <span class="add-on"><span class="callingcode"></span></span></span>
+                                <input id="telefone" name="telefone" type="number" class="input-block-level" value="<?php echo $result->telefone; ?>">
+                            </div>
                         </div>
                     </div>
-
                     <div class="control-group">
-                        <label for="celular" class="control-label">Celular/Whatsapp</label>
+                        <label class="control-label" for="celular">Celular</label>
                         <div class="controls">
-                            <input id="celular" type="text" name="celular" value="<?php echo $result->celular; ?>" />
+                            <div class="input-prepend">
+                                <span class="add-on"><span class="callingcode"></span></span></span>
+                                <input id="celular" name="celular" type="number" class="input-block-level" value="<?php echo $result->celular; ?>">
+                            </div>
                         </div>
                     </div>
 
@@ -107,6 +112,16 @@
                             <input id="estado" type="text" name="estado" value="<?php echo $result->estado; ?>" />
                         </div>
                     </div>
+
+                    <div class="control-group" class="control-label">
+                        <label for="pais" class="control-label">País</label>
+                        <div class="controls">
+                            <select id="pais" name="pais" class="">
+                                <option value="">Seleccione...</option>
+                            </select>
+                        </div>
+                    </div>
+
 
                     <!--DATA-->
                     <div class="control-group">
@@ -171,6 +186,31 @@
 <script src="<?php echo base_url() ?>assets/js/jquery.validate.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
+
+        $.getJSON('<?php echo base_url() ?>assets/json/countries.json', function(data) {
+            $('#pais').change((e) => {
+                var value = e.target.value
+                var country = data.filter((e) => e.name == value)[0]
+                if(country) {
+                    $(`input[name="codpais"]`).val(country.callingCodes[0])
+                    $('.callingcode').html(`<img src="${country.flags.png}" width="24"/> <span class="text-muted">+${country.callingCodes[0]}</span>`)
+                }
+            })
+            for (i in data) {
+                $('#pais').append(new Option(data[i].name, data[i].name));
+            }
+
+            var curState = '<?php echo $result->pais ?: 'Argentina' ?>';
+            if (curState) {
+                var country = data.filter((e) => e.name == curState)[0]
+                if(country) {
+                    $('.callingcode').html(`<img src="${country.flags.png}" width="24"/> <span class="text-muted">+${country.callingCodes[0]}</span>`)
+                    $('input[name="codpais"]').val(country.callingCodes[0])
+                }
+                $("#pais option[value=" + curState + "]").prop("selected", true);
+            }
+
+        });
 
         $('#formUsuario').validate({
             rules: {

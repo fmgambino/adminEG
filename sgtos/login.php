@@ -25,7 +25,7 @@
         if ($hora >= 6 && $hora <= 12) {
             return 'Hola! Buenos Días' . (empty($nome) ? '' : ', ' . $nome);
         } elseif ($hora > 12 && $hora <=18) {
-            return 'Hola! Buenas Tarde' . (empty($nome) ? '' : ', ' . $nome);
+            return 'Hola! Buenas Tardes' . (empty($nome) ? '' : ', ' . $nome);
         } else {
             return 'Hola! Buenas Noches' . (empty($nome) ? '' : ', ' . $nome);
         }
@@ -73,7 +73,7 @@ echo saudacao($login);
               </div>
               <div class="center"><button id="btn-acessar">Acceder</button>
               </div>
-              <div class="links-uteis"><a href="https://electronicagambino.com"><p><?= date('Y'); ?> &copy; Electrónica Gambino</p></a>
+              <div class="links-uteis"><a href="https://mi-iphone.com.ar"><p><?= date('Y'); ?> &copy; MI iPhone</p></a>
               </div>
               <a href="#notification" id="call-modal" role="button" class="btn" data-toggle="modal" style="display: none ">notification</a>
               <div id="notification" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

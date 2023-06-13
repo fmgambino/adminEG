@@ -80,17 +80,17 @@ if (!$results) {
                             $dataInicial = date(('d/m/Y'), strtotime($r->dataInicial));
                             $dataFinal = date(('d/m/Y'), strtotime($r->dataFinal));
                             if ($r->status == "Aberto") {
-                                $status = '<span class="label label-success">Abierto</span>';
+                                $status = '<span class="label label-success">Aberto</span>';
                             } elseif ($r->status == "Orçamento") {
-                                $status = '<span class="label label-info">Presupuesto</span>';
+                                $status = '<span class="label label-info">Orçamento</span>';
                             } elseif ($r->status == "Finalizado") {
                                 $status = '<span class="label label-important">Finalizado</span>';
                             } elseif ($r->status == "Cancelado") {
                                 $status = '<span class="label label-inverse">Cancelado</span>';
                             } elseif ($r->status == "Faturado") {
-                                $status = '<span class="label">Facturado</span>';
+                                $status = '<span class="label">Faturado</span>';
                             } elseif ($r->status == "Negociação") {
-                                $status = '<span class="label">Negociación / Incumplimiento</span>';
+                                $status = '<span class="label">Negociação / Incumplimiento</span>';
                             } else {
                                 $status = '<span class="label">En Proceso</span>';
                             }

@@ -5,7 +5,7 @@
 class Os extends MY_Controller
 {
     /**
-     * author: Electrónica Gambino
+     * author: MI iPhone
      * email: electronicagambino@gmail.com
      *
      */
@@ -123,9 +123,11 @@ class Os extends MY_Controller
                 'status' => set_value('status'),
                 'observacoes' => set_value('observacoes'),
                 'laudoTecnico' => set_value('laudoTecnico'),
-                'faturado' => 0,
+                'Faturado' => 0,
                 'pin' => $this->input->post('pin'),
                 'patternlock' => $this->input->post('patternlock'),
+                'adelanto' => $this->input->post('adelanto'),
+                'categoria' => $this->input->post('categoria'),
             ];
 
             if (is_numeric($id = $this->os_model->add('os', $data, true))) {
@@ -162,7 +164,7 @@ class Os extends MY_Controller
                     $this->enviarOsPorEmail($idOs, $remetentes, 'Ordem de Serviço - Criada');
                 }
 
-                $this->session->set_flashdata('success', 'Sistema operativo agregado con éxito, puede agregar productos o servicios a esa OS en las pestañas Productos y Servicios.');
+                $this->session->set_flashdata('success', 'OS adicionada com sucesso, você pode adicionar produtos ou serviços a essa OS nas abas de Produtos e Serviços!');
                 log_info('Adicionou uma OS');
                 redirect(site_url('os/editar/') . $id);
             } else {
@@ -182,7 +184,7 @@ class Os extends MY_Controller
         }
 
         if (!$this->permission->checkPermission($this->session->userdata('permissao'), 'eOs')) {
-            $this->session->set_flashdata('error', 'Você não tem permissão para editar O.S.');
+            $this->session->set_flashdata('error', 'No tienes permiso para editar O.S.');
             redirect(base_url());
         }
 
@@ -192,7 +194,7 @@ class Os extends MY_Controller
 
         $this->data['editavel'] = $this->os_model->isEditable($this->input->post('idOs'));
         if (!$this->data['editavel']) {
-            $this->session->set_flashdata('error', 'Esta OS já e seu status não pode ser alterado e nem suas informações atualizadas. Por favor abrir uma nova OS.');
+            $this->session->set_flashdata('error', 'Esta OS ya no se puede cambiar su estado ni actualizar su información. Por favor abre una nueva OS.');
 
             redirect(site_url('os'));
         }
@@ -228,16 +230,18 @@ class Os extends MY_Controller
                 'clientes_id' => $this->input->post('clientes_id'),
                 'pin' => $this->input->post('pin'),
                 'patternlock' => $this->input->post('patternlock'),
+                'adelanto' => $this->input->post('adelanto'),
+                'categoria' => $this->input->post('categoria'),
             ];
             $os = $this->os_model->getById($this->input->post('idOs'));
 
             //Verifica para poder fazer a devolução do produto para o estoque caso OS seja cancelada.
 
-            if (strtolower($this->input->post('status')) == "cancelado" && strtolower($os->status) != "cancelado") {
+            if (strtolower($this->input->post('status')) == "Cancelado" && strtolower($os->status) != "Cancelado") {
                 $this->devolucaoEstoque($this->input->post('idOs'));
             }
 
-            if (strtolower($os->status) == "cancelado" && strtolower($this->input->post('status')) != "cancelado") {
+            if (strtolower($os->status) == "Cancelado" && strtolower($this->input->post('status')) != "Cancelado") {
                 $this->debitarEstoque($this->input->post('idOs'));
             }
 
@@ -273,10 +277,10 @@ class Os extends MY_Controller
                             array_push($remetentes, $os->email);
                             break;
                     }
-                    $this->enviarOsPorEmail($idOs, $remetentes, 'Ordem de Serviço - Editada');
+                    $this->enviarOsPorEmail($idOs, $remetentes, 'Orden de Servicio - Editada');
                 }
-
-                $this->session->set_flashdata('success', 'O.S.editada con Éxito');
+                $this->session->set_flashdata('success', 'O.S. editada con Éxito');
+                //$this->enviar_email()
                 log_info('Cambió una OS ID: ' . $this->input->post('idOs'));
                 redirect(site_url('os/editar/') . $this->input->post('idOs'));
             } else {
@@ -391,6 +395,52 @@ class Os extends MY_Controller
         $this->data['emitente'] = $this->Sgtos_model->getEmitente();
 
         $this->load->view('os/imprimirOsTermica', $this->data);
+    }
+
+    public function position($table){
+        if($this->input->post('id') && !empty($table)){
+            $idName = str_replace("_os", "", "{$table}_id");
+            //$this->load->model($table);
+            $this->db->select("{$idName}, os_id, position");
+            $this->db->from($table);
+            $list = $this->db->get()->result();
+            $this->db->select("{$idName}, position");
+            $this->db->from($table);
+            $this->db->where($idName, $this->input->post('id'));
+            $this->db->where('os_id', $this->input->post('os'));
+            $active_item =  $this->db->get()->result()[0];
+
+            $orderlist = [];
+            $active_order = 0;
+
+            // we save the current ordering in a separate array
+            foreach($list as $i => $item) {
+                if ($item->{$idName} == $this->input->post('id')) {
+                    $active_order = $i;
+                }
+                $orderlist[$i] = $item->{$idName};
+            }
+
+            // now we manipulate the list and update to the new ordering requested.
+            // the order parameter is the desired new position of the list.
+
+            // we delete the old position of the active item being requested order for
+
+            unset($orderlist[$active_order]);
+            //array_splice($orderlist, $active_item[$name]['ordernum'] - 1, 1);
+            // reindex
+            $orderlist = array_values($orderlist);
+            // now we add the active item into the new slot required
+            array_splice($orderlist, $this->input->post('ordernum') - 1, 0, $this->input->post('id'));
+
+            // finally we update database based on our new orderlist
+            foreach($orderlist as $ordernum => $id) {
+                $this->db->set('position', $ordernum + 1);
+                $this->db->where($idName, $id);
+                $this->db->where('os_id', $this->input->post('os'));
+                $this->db->update($table);                
+            }
+        }
     }
 
     public function enviar_email()
@@ -531,7 +581,7 @@ class Os extends MY_Controller
 
         $osStockRefund = $this->os_model->getById($id);
         //Verifica para poder fazer a devolução do produto para o estoque caso OS seja excluida.
-        if (strtolower($osStockRefund->status) != "cancelado") {
+        if (strtolower($osStockRefund->status) != "Cancelado") {
             $this->devolucaoEstoque($id);
         }
 
@@ -539,7 +589,7 @@ class Os extends MY_Controller
         $this->os_model->delete('produtos_os', 'os_id', $id);
         $this->os_model->delete('anexos', 'os_id', $id);
         $this->os_model->delete('os', 'idOs', $id);
-        if ((int)$os->faturado === 1) {
+        if ((int)$os->Faturado === 1) {
             $this->os_model->delete('lancamentos', 'descricao', "Fatura de OS - #${id}");
         }
 
@@ -594,6 +644,43 @@ class Os extends MY_Controller
             $q = strtolower($_GET['term']);
             $this->os_model->autoCompleteServico($q);
         }
+    }
+
+    public function quickEdit()
+    {
+        $value = trim($this->input->post('value'));
+        $id = $this->input->post('id');
+        $name = $this->input->post('name');
+        $os = $this->input->post('os');
+        $type = $this->input->post('type');
+
+        if (empty($value)) {
+            return $this->output
+                ->set_content_type('application/json')
+                ->set_status_header(400)
+                ->set_output(json_encode('Debe ingresar un valor para actualizar.'));
+        }
+
+        switch($name) {
+            case 'name':
+                $this->db->set('nome', $value);
+                $this->db->where('id' . ucfirst($type), $id);
+                $this->db->update($type);
+            break;
+            default:
+                $this->db->set($name, $value);
+                $this->db->where($type . '_id', $id);
+                $this->db->where('os_id', $os);
+                $this->db->update($type . '_os');
+            break;
+        }
+
+        log_info('Edición de nombre de servicio desde una OS. ID (OS): ' . $id);
+
+        return $this->output
+            ->set_content_type('application/json')
+            ->set_status_header(200)
+            ->set_output(json_encode(['result' => true]));
     }
 
     public function adicionarProduto()
@@ -961,7 +1048,7 @@ class Os extends MY_Controller
             if ($this->os_model->add('lancamentos', $data) == true) {
                 $os = $this->input->post('os_id');
 
-                $this->db->set('faturado', 1);
+                $this->db->set('Faturado', 1);
                 $this->db->set('valorTotal', $this->input->post('valor'));
                 $this->db->set('status', 'Faturado');
                 $this->db->where('idOs', $os);

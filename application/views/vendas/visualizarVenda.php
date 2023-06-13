@@ -36,11 +36,11 @@
                                                 <?php echo $emitente[0]->nome; ?></span> </br><span>
                                                 <?php echo $emitente[0]->cnpj; ?> </br>
                                                 <?php echo $emitente[0]->rua . ', nº:' . $emitente[0]->numero . ', ' . $emitente[0]->bairro . ' - ' . $emitente[0]->cidade . ' - ' . $emitente[0]->uf; ?> </span> </br> <span> E-mail:
-                                                <?php echo $emitente[0]->email . ' - Fone: ' . $emitente[0]->telefone; ?></span></td>
+                                                <?php echo $emitente[0]->email . ' - Tel: ' . $emitente[0]->telefone; ?></span></td>
                                         <td style="width: 18%; text-align: center">Venta: <span>
                                                 <?php echo $result->idVendas ?></span></br> </br> <span>Emisor:
                                                 <?php echo date('d/m/Y'); ?></span>
-                                            <?php if ($result->faturado) : ?>
+                                            <?php if ($result->Faturado) : ?>
                                                 <br>
                                                 Vencimiento:
                                                 <?php echo date('d/m/Y', strtotime($result->data_vencimento)); ?>
@@ -113,7 +113,7 @@
                                         echo '<td>' . $p->descricao . '</td>';
                                         echo '<td>' . $p->quantidade . '</td>';
                                         echo '<td>' . ($p->preco ?: $p->precoVenda) . '</td>';
-                                        echo '<td>R$ ' . number_format($p->subTotal, 2, ',', '.') . '</td>';
+                                        echo '<td>$ ' . number_format($p->subTotal, 2, ',', '.') . '</td>';
                                         echo '</tr>';
                                     } ?>
                                     <tr>
