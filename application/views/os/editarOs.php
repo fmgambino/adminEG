@@ -397,19 +397,11 @@ foreach ($servicos as $s) {
     $preco = $s->preco ?: $s->precoVenda;
     $subtotals = $preco * ($s->quantidade ?: 1);
     $totals = $totals + $subtotals;
-<<<<<<< HEAD
     echo '<tr data-id="' . $s->servicos_id . '" data-os="' . $s->os_id . '" data-order="' . $s->position . '" data-type="servicos">';
     echo '<td><span class="promptable" data-name="name" title="Editar nombre del servicio">' . $s->nome  . '</span></td>';
     echo '<td><div align="center"><span class="promptable" data-name="quantidade" title="Editar nombre del servicio">' . ($s->quantidade ?: 1) . '</span></div></td>';
     echo '<td><div align="center"><span class="promptable" data-name="preco" title="Editar precio del servicio">$ ' . $preco  . '</span></div></td>';
     echo '<td><div align="center" class="nowrap"><!--span type="servicos" idRelated="' . $s->servicos_id . '" title="Editar Servicio" class="btn-nwe prompt-edit"><i class="bx bx-edit-alt drag-bypass"></i></span--><span idAcao="' . $s->idServicos_os . '" title="Eliminar Servicio" class="btn-nwe servico"><i class="bx bx-trash-alt drag-bypass"></i></span></div></td>';
-=======
-    echo '<tr data-id="' . $s->servicos_id . '" data-os="' . $s->os_id . '" data-order="' . $s->position . '">';
-    echo '<td>' . $s->nome  . '</td>';
-    echo '<td><div align="center">' . ($s->quantidade ?: 1) . '</div></td>';
-    echo '<td><div align="center">$ ' . $preco  . '</div></td>';
-    echo '<td><div align="center" class="nowrap"><span type="servicos" idRelated="' . $s->servicos_id . '" title="Editar Servicio" class="btn-nwe related-name"><i class="bx bx-edit-alt drag-bypass"></i></span><span idAcao="' . $s->idServicos_os . '" title="Eliminar Servicio" class="btn-nwe servico"><i class="bx bx-trash-alt drag-bypass"></i></span></div></td>';
->>>>>>> ff48f06adcecd26b6195d176d06399ac9a37bb13
     echo '<td><div align="center">$' . number_format($subtotals, 2, ',', '.') . '</div></td>';
     echo '</tr>';
 } ?>
