@@ -42,7 +42,11 @@ $config['app_subname'] = 'Al Sistema de Gestion de Mi-IPhone';
 
 //SERVIDOR DE PRUEBAS HOSTINGER DE ELECTRONICAGAMBINO
 //$config['base_url'] = 'https://mi-iphone.midemo.tech';
+<<<<<<< HEAD
 $config['base_url'] = $_SERVER['REMOTE_ADDR'] == '127.0.0.1' || $_SERVER['REMOTE_ADDR'] == '::' ? 'http://localhost:8000' : 'https://mi-iphone.com.ar';
+=======
+$config['base_url'] = $_SERVER['REMOTE_ADDR'] == '127.0.0.1' || $_SERVER['REMOTE_ADDR'] == '::' ? 'http://localhost:8000' : 'https://admin.electronicagambino.com';
+>>>>>>> ff48f06adcecd26b6195d176d06399ac9a37bb13
 
 //LOCALHOST ING. GAMBINO
  //$config['base_url'] = 'http://localhost/myIphone';

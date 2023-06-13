@@ -331,11 +331,19 @@ foreach ($servicos as $s) {
                     $total = 0;
 foreach ($produtos as $p) {
     $total = $total + $p->subTotal;
+<<<<<<< HEAD
     echo '<tr data-id="' . $s->produto_id . '" data-os="' . $s->os_id . '" data-order="' . $s->position . '" data-id="' . $s->produtos_id . '" data-type="produtos">';
     echo '<td><span class="promptable" data-name="name" title="Editar nombre del producto">' . $p->descricao . '<span></td>';
     echo '<td><div align="center"><span class="promptable" data-name="quantidade" title="Editar cantidad del producto">' . $p->quantidade . '</td>';
     echo '<td><div align="center"><span class="promptable" data-name="preco" title="Editar precio del producto">$: ' . ($p->preco ?: $p->precoVenda)  . '</span></td>';
     echo (strtolower($result->status) != "Cancelado") ? '<td><div align="center" class="nowrap"><!--span type="produtos" title="Editar Producto" class="btn-nwe prompt-edit"><i class="bx bx-edit-alt drag-bypass"></i></span--><a href="" idAcao="' . $p->idProdutos_os . '" prodAcao="' . $p->idProdutos . '" quantAcao="' . $p->quantidade . '" title="Eliminar Producto" class="btn-nwe4"><i class="bx bx-trash-alt"></i></a></td>' : '<td></td>';
+=======
+    echo '<tr data-id="' . $s->produto_id . '" data-os="' . $s->os_id . '" data-order="' . $s->position . '">';
+    echo '<td>' . $p->descricao . '</td>';
+    echo '<td><div align="center">' . $p->quantidade . '</td>';
+    echo '<td><div align="center">$: ' . ($p->preco ?: $p->precoVenda)  . '</td>';
+    echo (strtolower($result->status) != "Cancelado") ? '<td><div align="center" class="nowrap"><span type="produtos" idRelated="' . $s->produtos_id . '" title="Editar Producto" class="btn-nwe related-name"><i class="bx bx-edit-alt drag-bypass"></i></span><a href="" idAcao="' . $p->idProdutos_os . '" prodAcao="' . $p->idProdutos . '" quantAcao="' . $p->quantidade . '" title="Eliminar Producto" class="btn-nwe4"><i class="bx bx-trash-alt"></i></a></td>' : '<td></td>';
+>>>>>>> ff48f06adcecd26b6195d176d06399ac9a37bb13
     echo '<td><div align="center">$: ' . number_format($p->subTotal, 2, ',', '.') . '</td>';
     echo '</tr>';
 } ?>
@@ -397,11 +405,19 @@ foreach ($servicos as $s) {
     $preco = $s->preco ?: $s->precoVenda;
     $subtotals = $preco * ($s->quantidade ?: 1);
     $totals = $totals + $subtotals;
+<<<<<<< HEAD
     echo '<tr data-id="' . $s->servicos_id . '" data-os="' . $s->os_id . '" data-order="' . $s->position . '" data-type="servicos">';
     echo '<td><span class="promptable" data-name="name" title="Editar nombre del servicio">' . $s->nome  . '</span></td>';
     echo '<td><div align="center"><span class="promptable" data-name="quantidade" title="Editar nombre del servicio">' . ($s->quantidade ?: 1) . '</span></div></td>';
     echo '<td><div align="center"><span class="promptable" data-name="preco" title="Editar precio del servicio">$ ' . $preco  . '</span></div></td>';
     echo '<td><div align="center" class="nowrap"><!--span type="servicos" idRelated="' . $s->servicos_id . '" title="Editar Servicio" class="btn-nwe prompt-edit"><i class="bx bx-edit-alt drag-bypass"></i></span--><span idAcao="' . $s->idServicos_os . '" title="Eliminar Servicio" class="btn-nwe servico"><i class="bx bx-trash-alt drag-bypass"></i></span></div></td>';
+=======
+    echo '<tr data-id="' . $s->servicos_id . '" data-os="' . $s->os_id . '" data-order="' . $s->position . '">';
+    echo '<td>' . $s->nome  . '</td>';
+    echo '<td><div align="center">' . ($s->quantidade ?: 1) . '</div></td>';
+    echo '<td><div align="center">$ ' . $preco  . '</div></td>';
+    echo '<td><div align="center" class="nowrap"><span type="servicos" idRelated="' . $s->servicos_id . '" title="Editar Servicio" class="btn-nwe related-name"><i class="bx bx-edit-alt drag-bypass"></i></span><span idAcao="' . $s->idServicos_os . '" title="Eliminar Servicio" class="btn-nwe servico"><i class="bx bx-trash-alt drag-bypass"></i></span></div></td>';
+>>>>>>> ff48f06adcecd26b6195d176d06399ac9a37bb13
     echo '<td><div align="center">$' . number_format($subtotals, 2, ',', '.') . '</div></td>';
     echo '</tr>';
 } ?>
@@ -1169,6 +1185,7 @@ foreach ($servicos as $s) {
             }
         });
 
+<<<<<<< HEAD
         $(document).on('click', '.promptable', function(event) {
             var td = $(this)
             var tr = td.closest('tr')
@@ -1195,6 +1212,22 @@ foreach ($servicos as $s) {
                               document.querySelector('.draggable-saved').classList.add('chatOut')
                             }, 3000)                            
                         }
+=======
+        $(document).on('click', '.related-name', function(event) {
+            var idRelated = $(this).attr('idRelated');
+            var type = $(this).attr('type');
+            var name = $(this).closest('tr').find('td').first()
+            var value = name.text()
+            var edit = prompt('Ingrese nombre del servicio', value)
+            if(edit !== null) {
+                $.ajax({
+                    type: "POST",
+                    url: "<?php echo base_url(); ?>index.php/os/nameRelated",
+                    data: "type=" + type + "&name=" + edit + "&id=" + idRelated,
+                    dataType: 'json',
+                    success: function(data) {
+                        name.text(edit)
+>>>>>>> ff48f06adcecd26b6195d176d06399ac9a37bb13
                     }
                 })
             }

@@ -424,6 +424,7 @@ class Sgtos extends MY_Controller
             $this->data['custom_error'] = (validation_errors() ? '<div class="alert">' . validation_errors() . '</div>' : false);
         } else {
             // update assets
+<<<<<<< HEAD
             $img_path = __DIR__ .'/../../assets/img';
             if(!empty($_FILES['logo']['size'])) {
                 copy($_FILES['logo']['tmp_name'], $img_path . '/logos/iconAppleDarkLila.png');
@@ -433,6 +434,18 @@ class Sgtos extends MY_Controller
             }
             if(!empty($_FILES['favicon']['size'])) {
                 copy($_FILES['favicon']['tmp_name'], $img_path . '/faviconAppleWhiteBox.png');
+=======
+            $logos_path = __DIR__ .'/../../assets/img/logos/';
+            if(!empty($_FILES['logo']['size'])) {
+                copy($_FILES['logo']['tmp_name'], $logos_path . 'iconAppleDarkLila.png');
+            }
+
+            if(!empty($_FILES['logo_dark']['size'])) {
+                copy($_FILES['logo_dark']['tmp_name'], $logos_path . 'iconAppleWhite.png');
+            }
+            if(!empty($_FILES['favicon']['size'])) {
+                copy($_FILES['favicon']['tmp_name'], $logos_path . 'faviconAppleWhiteBox.png');
+>>>>>>> ff48f06adcecd26b6195d176d06399ac9a37bb13
             }
             $data = [
                 'app_name' => $this->input->post('app_name'),

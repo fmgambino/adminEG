@@ -19,7 +19,11 @@
   
   function bindMouse() {
     document.addEventListener('mousedown', (event) => {
+<<<<<<< HEAD
       if(event.button != 0 || event.target.classList.contains('promptable')) return true;
+=======
+      if(event.button != 0 || event.target.classList.contains('drag-bypass')) return true;
+>>>>>>> ff48f06adcecd26b6195d176d06399ac9a37bb13
       
       let target = getTargetRow(event.target);
       if(target) {

@@ -646,6 +646,7 @@ class Os extends MY_Controller
         }
     }
 
+<<<<<<< HEAD
     public function quickEdit()
     {
         $value = trim($this->input->post('value'));
@@ -674,6 +675,30 @@ class Os extends MY_Controller
                 $this->db->update($type . '_os');
             break;
         }
+=======
+    public function nameRelated()
+    {
+        $name = trim($this->input->post('name'));
+        $id = $this->input->post('id');
+        $type = $this->input->post('type');
+
+        if (strlen($name) < 3) {
+            return $this->output
+                ->set_content_type('application/json')
+                ->set_status_header(400)
+                ->set_output(json_encode('Debe indicar un nombre para el servicio.'));
+        }
+
+        $data = [
+            'nome' => $name,
+        ];
+
+        $id = $this->input->post('id');
+
+        $this->db->set('nome', $name);
+        $this->db->where('idServicos', $id);
+        $this->db->update($type);
+>>>>>>> ff48f06adcecd26b6195d176d06399ac9a37bb13
 
         log_info('Edición de nombre de servicio desde una OS. ID (OS): ' . $id);
 
