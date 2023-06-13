@@ -2,8 +2,7 @@
 # production
 /install/files
 /docker/data
-/assets/qrcodes
-/assets/img/logos
+
 
 # misc
 .DS_Store
