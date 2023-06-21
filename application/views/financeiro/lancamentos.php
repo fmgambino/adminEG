@@ -159,7 +159,7 @@ $periodo = $this->input->get('periodo');
                             }
 
                             if ($this->permission->checkPermission($this->session->userdata('permissao'), 'eLancamento')) {
-                                echo '<a href="#modalEditar" style="margin-right: 1%" data-toggle="modal" role="button" idLancamento="' . $r->idLancamentos . '" descricao="' . $r->descricao . '" valor="' . number_format($r->valor, 2, ',', '.') . '" vencimento="' . date('d/m/Y', strtotime($r->data_vencimento)) . '" pagamento="' . $data_pagamento . '" baixado="' . $r->baixado . '" cliente="' . $r->cliente_fornecedor . '" formaPgto="' . $r->forma_pgto . '" tipo="' . $r->tipo . '" observacoes="' . $r->observacoes . '" descontos_editar="' . $r->desconto . '" valor_desconto_editar="' . $r->desconto . '" usuario="' . $r->nome . '" class="btn-nwe3 editar" title="Editar OS"><i class="bx bx-edit"></i></a>';
+                                echo '<a href="#modalEditar" style="margin-right: 1%" data-toggle="modal" role="button" idLancamento="' . $r->idLancamentos . '" descricao="' . $r->descricao . '" valor="' . number_format($r->valor, 2, ',', '.') . '" vencimento="' . date('d/m/Y', strtotime($r->data_vencimento)) . '" pagamento="' . $data_pagamento . '" baixado="' . $r->baixado . '" cliente="' . $r->cliente_fornecedor . '" formaPgto="' . $r->forma_pgto . '" tipo="' . $r->tipo . '" observacoes="' . $r->observacoes . '" descontos_editar="' . $r->desconto . '" valor_desconto_editar="' . ($r->valor - $r->desconto) . '" usuario="' . $r->nome . '" class="btn-nwe3 editar" title="Editar OS"><i class="bx bx-edit"></i></a>';
                             }
                             if ($this->permission->checkPermission($this->session->userdata('permissao'), 'dLancamento')) {
                                 echo '<a href="#modalExcluir" data-toggle="modal" role="button" idLancamento="' . $r->idLancamentos . '" class="btn-nwe4 excluir" title="Eliminar OS"><i class="bx bx-trash-alt"></i></a>';
@@ -298,7 +298,7 @@ echo number_format($soma_descontos_pagos, 2, ',', '.')?></strong></td>
 		            
           <div class="span3">  
           <label for="valor_desconto">Val.Desc <i class="icon-info-sign tip-left" title="No cambies este campo, si haces clic en él y sales y queda vacío, tendrás que recargar la página e insertarla de nuevo"></i></label>
-          <input class="span12 money" id="valor_desconto" readOnly="true" title="No cambies este campo" type="text" name="valor_desconto" value="<?php echo number_format($r->valor_desconto, 2, ',', '.') ?>"/>
+          <input class="span12 money" id="valor_desconto" readOnly="true" title="No cambies este campo" type="text" name="valor_desconto" value="<?php echo number_format($result->valor_desconto - $result->adelanto, ',', '.') ?>"/>
         </div>
 
                 <div class="span4" style="margin-left: 0">
