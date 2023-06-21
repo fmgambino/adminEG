@@ -298,7 +298,7 @@ echo number_format($soma_descontos_pagos, 2, ',', '.')?></strong></td>
 		            
           <div class="span3">  
           <label for="valor_desconto">Val.Desc <i class="icon-info-sign tip-left" title="No cambies este campo, si haces clic en él y sales y queda vacío, tendrás que recargar la página e insertarla de nuevo"></i></label>
-          <input class="span12 money" id="valor_desconto" readOnly="true" title="No cambies este campo" type="text" name="valor_desconto" value="<?php echo number_format(valor - $r->valor_desconto, 2, ',', '.') ?>"/>
+          <input class="span12 money" id="valor_desconto" readOnly="true" title="No cambies este campo" type="text" name="valor_desconto" value="<?php echo number_format($r->valor_desconto, 2, ',', '.') ?>"/>
         </div>
 
                 <div class="span4" style="margin-left: 0">
