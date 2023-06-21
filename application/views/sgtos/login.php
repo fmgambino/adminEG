@@ -37,7 +37,7 @@ echo saudacao($login);
 ?></h1>
 
 <h2 class="h-two"> Al Sistema de Gestión de Electrónica Gambino</h2>
-    <img src="<?php echo base_url() ?>assets/img/dashboard-animate.svg" class="left-login-image" alt="MI-iPhone - Versión: <?= $this->config->item('app_version'); ?>">
+    <img src="<?php echo base_url() ?>assets/img/dashboard-animate.svg" class="left-login-image" alt="Electrónica Gambino - Versión: <?= $this->config->item('app_version'); ?>">
 </div>
 <div id="loginbox">
     <form class="form-vertical" id="formLogin" method="post" action="<?= site_url('login/verificarLogin') ?>">
@@ -73,12 +73,12 @@ echo saudacao($login);
               </div>
               <div class="center"><button id="btn-acessar">Acceder</button>
               </div>
-              <div class="links-uteis"><a href="https://admin.electronicagambino.com/index.php/login"><p><?= date('Y'); ?> &copy; MI-iPhone</p></a>
+              <div class="links-uteis"><a href="https://admin.electronicagambino.com/index.php/login"><p><?= date('Y'); ?> &copy; Electrónica Gambino</p></a>
               </div>
               <a href="#notification" id="call-modal" role="button" class="btn" data-toggle="modal" style="display: none ">notificación</a>
               <div id="notification" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-header">
-                  <h4 id="myModalLabel">MI-iPhone</h4>
+                  <h4 id="myModalLabel">Electrónica Gambino</h4>
                 </div>
                 <div class="modal-body">
                   <h5 style="text-align: center" id="message">Los datos de inicio de sesión son incorrectos, ¡inténtalo de nuevo!</h5>
@@ -95,7 +95,7 @@ echo saudacao($login);
     <a href="#notification" id="call-modal" role="button" class="btn" data-toggle="modal" style="display: none ">notificación</a>
     <div id="notification" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-header">
-        <h4 id="myModalLabel">MI-iPhone</h4>
+        <h4 id="myModalLabel">Electrónica Gambino</h4>
       </div>
       <div class="modal-body">
         <h5 style="text-align: center" id="message">Los datos de inicio de sesión son incorrectos, ¡inténtalo de nuevo!</h5>
