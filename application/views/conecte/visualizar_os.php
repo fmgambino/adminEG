@@ -192,7 +192,7 @@ $totalProdutos = 0; ?>
                                 <?php if($result->adelanto): ?>
                                     <tr>
                                         <td colspan="3" style="text-align: right"></td>
-                                        <td style='text-align: center'><strong> Adelanto: $
+                                        <td style='text-align: center'><strong> Anticipo: $
                                                 <?php echo number_format($result->adelanto, 2, ',', '.') : ""; ?>
                                             </strong>
                                         </td>

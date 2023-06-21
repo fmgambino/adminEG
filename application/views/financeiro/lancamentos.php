@@ -149,7 +149,7 @@ $periodo = $this->input->get('periodo');
                             echo '<td>' . $r->forma_pgto . '</td>';
                             echo '<td> $ ' . number_format($r->valor, 2, ',', '.') . '</td>'; //valor total sem o desconto
                             echo  $r->tipo_desconto == "real" ? '<td>' . "$ ".$r->desconto . '</td>' : ($r->tipo_desconto == "porcentaje" ? '<td>' . $r->desconto." %" . '</td>' : '<td>' . "-" . '</td>'); // valor do desconto
-                            echo '<td> $ ' . number_format($r->valor_desconto - $result->adelanto, 2, ',', '.') . '</td>'; // valor total  com o desconto
+                            echo '<td> $ ' . number_format($r->valor_desconto - $r->adelanto, 2, ',', '.') . '</td>'; // valor total  com o desconto
                            
                             echo '<td>';
                             if ($r->data_pagamento == "0000-00-00") {
