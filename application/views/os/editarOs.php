@@ -575,7 +575,7 @@ foreach ($servicos as $s) {
                     <input class="span12 money" id="valor" type="text" data-affixes-stay="true" data-thousands="" data-decimal="." name="valor" value="<?php echo number_format($totals + $total, 2, '.', ''); ?>" />
                 </div>
                 <div class="span6" style="margin-left: 2;">
-                    <label for="valor">Precio con Descuento*</label>
+                    <label for="valor">Saldo a Pagar*</label>
                     <input class="span12 money" id="faturar-desconto" type="text" name="faturar-desconto" value="<?php echo number_format($result->valor_desconto - $result->adelanto, 2, '.', ''); ?> " />
                     <strong><span style="color: red" id="resultado"></span></strong>
                 </div>
