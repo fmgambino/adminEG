@@ -229,7 +229,7 @@
 </div>
 <!--Footer-part-->
 <div class="row-fluid">
-        <div id="footer" class="span12" style="padding: 10px"> <a class="pecolor" href="https://mi-iphone.com.ar" target="_blank">
+        <div id="footer" class="span12" style="padding: 10px"> <a class="pecolor" href="https://electronicagambino.com.ar" target="_blank">
                 <?= date('Y') ?> &copy; MI iPhone - Versión: <?= $this->config->item('app_version'); ?>
     </div>
 

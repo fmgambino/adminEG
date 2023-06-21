@@ -305,7 +305,7 @@ class MercadoPago extends BasePaymentGateway
         $this->ci->email->message("
 COBRANZA DE MI-iPhone<br><br>
 
-Asunto: Factura de su Orden de Servicio en https://mi-iphone.com.ar<br><br>
+Asunto: Factura de su Orden de Servicio en https://electronicagambino.com<br><br>
 
 Estimado/a [Nombre del cliente],<br><br>
 
@@ -326,7 +326,7 @@ Agradecemos su confianza en https://mi-iphone.com.ar, y esperamos seguir siendo 
 Atentamente,<br>
 El equipo de MI-iPhone<br>
 Whatsapp Business Wa.me/541128715389<br>
-Nuestra web: https://mi-iphone.com.ar
+Nuestra web: https://electronicagambino.com
 ");
 
         $this->ci->email->send();

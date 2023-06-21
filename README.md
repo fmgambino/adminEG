@@ -11,8 +11,8 @@ Sistema de Gestion p/Taller de Reparaciones Celulares/Computadoras.
 ![theme](https://img.shields.io/badge/theme-Matrix--Admin-lightgrey.svg?longCache=true&style=flat-square)
 
 
-### Contacto: soporte@nexo-life.com
-### [Web](https://https://mi-iphone.com.ar) - NEXO-LIFE
+### Contacto: electronicagambino@gmail.com
+### [Web](https://https://electronicagambino.com) - Electr{onica Gambino}
 
 ![MI-iPhone](https://i.ibb.co/Y7hGkXn/dash-MI-i-Phone.png)
 

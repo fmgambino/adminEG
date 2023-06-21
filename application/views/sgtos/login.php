@@ -36,7 +36,7 @@ echo saudacao($login);
 // Irá retornar conforme o horário:
 ?></h1>
 
-<h2 class="h-two"> Al Sistema de Gestión de Mi-IPhone</h2>
+<h2 class="h-two"> Al Sistema de Gestión de Electrónica Gambino</h2>
     <img src="<?php echo base_url() ?>assets/img/dashboard-animate.svg" class="left-login-image" alt="MI-iPhone - Versión: <?= $this->config->item('app_version'); ?>">
 </div>
 <div id="loginbox">
@@ -73,7 +73,7 @@ echo saudacao($login);
               </div>
               <div class="center"><button id="btn-acessar">Acceder</button>
               </div>
-              <div class="links-uteis"><a href="https://mi-iphone.com.ar/index.php/login"><p><?= date('Y'); ?> &copy; MI-iPhone</p></a>
+              <div class="links-uteis"><a href="https://admin.electronicagambino.com/index.php/login"><p><?= date('Y'); ?> &copy; MI-iPhone</p></a>
               </div>
               <a href="#notification" id="call-modal" role="button" class="btn" data-toggle="modal" style="display: none ">notificación</a>
               <div id="notification" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

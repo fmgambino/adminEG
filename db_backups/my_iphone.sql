@@ -610,7 +610,7 @@ CREATE TABLE `configuracoes` (
 --
 
 INSERT INTO `configuracoes` (`idConfig`, `config`, `valor`) VALUES
-(2, 'app_name', 'MI-Iphone'),
+(2, 'app_name', 'ADMIN-EG'),
 (3, 'app_theme', 'default'),
 (4, 'per_page', '50'),
 (5, 'os_notification', 'todos'),

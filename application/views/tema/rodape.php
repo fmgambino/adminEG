@@ -1,5 +1,5 @@
 <div class="row-fluid">
-    <div id="footer" class="span12"> <a class="pecolor" href="https://mi-iphone.com.ar" target="_blank">
+    <div id="footer" class="span12"> <a class="pecolor" href="https://electronicagambino.com" target="_blank">
             <?= date('Y'); ?> &copy; MI iPhone - Versión:
       <?= $this->config->item('app_version'); ?></a></div>
 </div>
