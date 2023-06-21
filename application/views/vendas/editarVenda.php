@@ -124,7 +124,7 @@
                                         <strong><span style="color: red" id="errorAlert"></span></strong>
                                         </div>
                                         <div class="span2">
-                                            <label for="">Total con Descuento</label>
+                                            <label for="">Total a Pagar</label>
                                             <input class="span12 money" id="resultado" type="text" data-affixes-stay="true" data-thousands="" data-decimal="." name="resultado" value="" readonly />
                                         </div>
                                         <div class="span2">
@@ -177,7 +177,7 @@ foreach ($produtos as $p) {
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td colspan="4" style="text-align: right"><strong>Total Con Descuento:</strong></td>
+                                                <td colspan="4" style="text-align: right"><strong>Total a Pagar:</strong></td>
                                                 <td>
                                                     <div align="center"><strong>$: <?php echo number_format($result->valor_desconto, 2, '.', ''); ?></strong></div><input type="hidden" id="total-desconto" value="<?php echo number_format($result->valor_desconto, 2, '.', ''); ?>">
                                                 </td>

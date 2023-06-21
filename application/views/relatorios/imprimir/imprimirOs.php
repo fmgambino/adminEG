@@ -37,7 +37,7 @@
                                     <th width="140" align="center" style="font-size: 12px">TOTAL SERVICIOS</th>
                                     <th width="140" align="center" style="font-size: 12px">TOTAL</th>
                                     <th width="140" align="center" style="font-size: 12px">DESCUENTO</th>
-                                    <th width="100" align="center" style="font-size: 12px">TOTAL CON DESCUENTO</th>
+                                    <th width="100" align="center" style="font-size: 12px">Total a Pagar</th>
                                 </tr>
                             </thead>
                             <tbody>

@@ -295,7 +295,7 @@ $totalProdutos = 0; ?>
                 <tr class="heading">
                     <td colspan="3"></td>
                     <td style="text-align: center">
-                        <strong>Total con Descuento: $ <?= number_format($result->valor_desconto, 2, ',', '.') ?></strong>
+                        <strong>Total a Pagar: $ <?= number_format($result->valor_desconto, 2, ',', '.') ?></strong>
                     </td>
                 </tr>
             <?php } ?>

@@ -296,7 +296,7 @@
                             echo "<h4 style='text-align: right'>Valor Total: $ " . number_format($totalProdutos + $totalServico, 2, ',', '.') . "</h4>";
                             echo $result->valor_desconto != 0 ? "<h4 style='text-align: right'> Descuento: $ " . number_format($result->valor_desconto != 0 ? $result->valor_desconto - ($totalProdutos + $totalServico) : 0.00, 2, ',', '.') . "</h4>" : "";
                             echo $result->adelanto != 0 ? "<h4 style='text-align: right'> Adelanto: $ " . number_format($result->adelanto, 2, ',', '.') . "</h4>" : "";
-                            echo $result->valor_desconto != 0 ? "<h4 style='text-align: right'> Total con Descuento: $ " . number_format($result->valor_desconto - $result->adelanto, 2, ',', '.') . "</h4>" : "";
+                            echo $result->valor_desconto != 0 ? "<h4 style='text-align: right'> Total a Pagar: $ " . number_format($result->valor_desconto - $result->adelanto, 2, ',', '.') . "</h4>" : "";
                         }
 ?>
                     </div>

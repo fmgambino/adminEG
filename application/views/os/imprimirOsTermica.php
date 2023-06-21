@@ -218,7 +218,7 @@ $totalProdutos = 0; ?>
                                                 if ($totalProdutos != 0 || $totalServico != 0) {
                                                     echo "<h4 style='text-align: right; font-size: 13px;'>Valor Total: $ " . number_format($totalProdutos + $totalServico, 2, ',', '.') . "</h4>";
                                                     echo $result->valor_desconto != 0 ? "<h4 style='text-align: right; font-size: 13px;'> Descuento: $ " . number_format($result->valor_desconto != 0 ? $result->valor_desconto - ($totalProdutos + $totalServico) : 0.00, 2, ',', '.') . "</h4>" : "";
-                                                    echo $result->valor_desconto != 0 ? "<h4 style='text-align: right; font-size: 13px;'> Total con Descuento: $ " . number_format($result->valor_desconto, 2, ',', '.') . "</h4>" : "";
+                                                    echo $result->valor_desconto != 0 ? "<h4 style='text-align: right; font-size: 13px;'> Total a Pagar: $ " . number_format($result->valor_desconto, 2, ',', '.') . "</h4>" : "";
                                                 } ?>
                                     </td>
                                 </tr>
@@ -432,7 +432,7 @@ $totalProdutos = 0; ?>
                                                         if ($totalProdutos != 0 || $totalServico != 0) {
                                                             echo "<h4 style='text-align: right; font-size: 13px;'>Valor Total: $ " . number_format($totalProdutos + $totalServico, 2, ',', '.') . "</h4>";
                                                             echo $result->valor_desconto != 0 ? "<h4 style='text-align: right; font-size: 13px;'> Desconto: $ " . number_format($result->valor_desconto != 0 ? $result->valor_desconto - ($totalProdutos + $totalServico) : 0.00, 2, ',', '.') . "</h4>" : "";
-                                                            echo $result->valor_desconto != 0 ? "<h4 style='text-align: right; font-size: 13px;'> Total con Descuento: $ " . number_format($result->valor_desconto, 2, ',', '.') . "</h4>" : "";
+                                                            echo $result->valor_desconto != 0 ? "<h4 style='text-align: right; font-size: 13px;'> Total a Pagar: $ " . number_format($result->valor_desconto, 2, ',', '.') . "</h4>" : "";
                                                         } ?>
                                             </td>
                                         </tr>

@@ -134,7 +134,7 @@
                         <h4 style="text-align: right">Descuento: $
                             <?php echo number_format($result->valor_desconto - $totalProdutos, 2, ',', '.'); ?>
                         </h4>
-                        <h4 style="text-align: right">Total Con Descuento: $
+                        <h4 style="text-align: right">Total a Pagar: $
                             <?php echo number_format($result->valor_desconto, 2, ',', '.'); ?>
                         </h4>
                     <?php

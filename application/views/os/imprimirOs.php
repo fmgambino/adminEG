@@ -267,7 +267,7 @@ $totalProdutos = 0; ?>
                                     if ($totalProdutos != 0 || $totalServico != 0) {
                                         echo "<h4 style='text-align: right'> Valor Total de la OS: $ " . number_format($totalProdutos + $totalServico, 2, ',', '.') . "</h4>";
                                         echo $result->valor_desconto != 0 ? "<h4 style='text-align: right'> Descuento: $ " . number_format($result->valor_desconto != 0 ? $result->valor_desconto - ($totalProdutos + $totalServico) : 0.00, 2, ',', '.') . "</h4>" : "";
-                                        echo $result->valor_desconto != 0 ? "<h4 style='text-align: right'> Total con Descuento: $ " . number_format($result->valor_desconto, 2, ',', '.') . "</h4>" : "";
+                                        echo $result->valor_desconto != 0 ? "<h4 style='text-align: right'> Total a Pagar: $ " . number_format($result->valor_desconto, 2, ',', '.') . "</h4>" : "";
                                     }
 ?>
 <?php echo "<br>"; ?> 
@@ -493,7 +493,7 @@ $totalProdutos = 0; ?>
                                     if ($totalProdutos != 0 || $totalServico != 0) {
                                         echo "<h4 style='text-align: right'> Valor Total da OS: $ " . number_format($totalProdutos + $totalServico, 2, ',', '.') . "</h4>";
                                         echo $result->valor_desconto != 0 ? "<h4 style='text-align: right'> Descuento: $ " . number_format($result->valor_desconto != 0 ? $result->valor_desconto - ($totalProdutos + $totalServico) : 0.00, 2, ',', '.') . "</h4>" : "";
-                                        echo $result->valor_desconto != 0 ? "<h4 style='text-align: right'> Total con Descuento: $ " . number_format($result->valor_desconto, 2, ',', '.') . "</h4>" : "";
+                                        echo $result->valor_desconto != 0 ? "<h4 style='text-align: right'> Total a Pagar: $ " . number_format($result->valor_desconto, 2, ',', '.') . "</h4>" : "";
                                     }
 ?>
 <?php echo "<br>"; ?> 

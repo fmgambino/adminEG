@@ -276,7 +276,7 @@ foreach ($servicos as $s) {
                                         <strong><span style="color: red" id="errorAlert"></span></strong>
                                     </div>
                                     <div class="span2">
-                                        <label for="">Total con Descuento</label>
+                                        <label for="">Total a Pagar</label>
                                         <input class="span12 money" id="resultado" type="text" data-affixes-stay="true" data-thousands="" data-decimal="." name="resultado" value="<?php echo $result->valor_desconto ?>" readonly />
                                     </div>
                                     <div class="span2">

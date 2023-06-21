@@ -34,7 +34,7 @@
                                     <th width="140" align="center" style="font-size: 15px">Fecha</th>
                                     <th width="140" align="center" style="font-size: 15px">Total</th>
                                     <th width="140" align="center" style="font-size: 15px">Descuento</th>
-                                    <th width="140" align="center" style="font-size: 15px">Total Con Descuento</th>
+                                    <th width="140" align="center" style="font-size: 15px">Total a Pagar</th>
                                 </tr>
                             </thead>
                             <tbody>
