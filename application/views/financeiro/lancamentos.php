@@ -179,7 +179,7 @@ $periodo = $this->input->get('periodo');
                         <tr>
                             <td colspan="6" style="text-align: right; color: red"><strong>Total Gastos:</strong></td>
                             <td colspan="6" style="text-align: left; color: red">
-                                <strong>$<?php echo number_format($totals['Gastos'], 2, ',', '.') ?></strong>
+                                <strong>$<?php echo number_format($totals['despesas'], 2, ',', '.') ?></strong>
                             </td>
                         </tr>
                         <tr>
