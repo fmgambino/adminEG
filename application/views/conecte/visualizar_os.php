@@ -200,7 +200,7 @@ $totalProdutos = 0; ?>
                                 <?php endif ?>                          
                                     <tr>
                                         <td colspan="3" style="text-align: right"></td>
-                                        <td style="text-align: center"><strong> Total con Descuento: $
+                                        <td style="text-align: center"><strong> Total a Pagar: $
                                                 <?php echo $result->valor_desconto != 0 ? number_format($result->valor_desconto - $result->adelanto, 2, ',', '.') : ""; ?>
                                             </strong>
                                         </td>
